@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
+import { SpeedInsights } from '@vercel/speed-insights/next'
+import { Analytics } from '@vercel/analytics/react'
 import { routing } from '@/i18n/routing'
 import { LanguageSwitcher } from '@/components/common/LanguageSwitcher'
 import { buildJsonLdGraph } from '@/lib/seo'
@@ -176,6 +178,8 @@ export default async function LocaleLayout({
       />
       <LanguageSwitcher currentLocale={locale as Locale} />
       {children}
+      <SpeedInsights />
+      <Analytics />
     </>
   )
 }
