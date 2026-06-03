@@ -1,0 +1,66 @@
+{
+  "meta": {
+    "title": "Tiago Estetele — Front-End Developer",
+    "description": "Front-End Developer specialized in React, Next.js, TypeScript, WordPress and Strapi. Building scalable web experiences and exploring the future of AI.",
+    "name": "Tiago Estetele"
+  },
+  "hero": {
+    "eyebrow": "Front-End Developer",
+    "headline": "Building scalable web experiences and exploring the future of AI.",
+    "subtextBefore": "Specialized in",
+    "subtextTechs": "React, Next.js, TypeScript, WordPress",
+    "subtextAnd": "and",
+    "subtextStrapi": "Strapi",
+    "subtextAfter": ". Currently expanding into Software Architecture, Back-end Development, and AI Engineering.",
+    "ctaContact": "Get in Touch",
+    "ctaStack": "Explore My Stack",
+    "badges": {
+      "remote": "Remote since 2022",
+      "location": "Based in Brazil",
+      "ai": "AI Enthusiast"
+    }
+  },
+  "technologies": {
+    "pill": "My Stack",
+    "heading": "The tools I build with",
+    "subtext": "Carefully chosen technologies for modern, scalable, and performant web applications.",
+    "categories": {
+      "frontend": {
+        "name": "Frontend",
+        "sub": "UI & Experience"
+      },
+      "backend": {
+        "name": "Backend",
+        "sub": "APIs & Services"
+      },
+      "cms": {
+        "name": "CMS",
+        "sub": "Content Management"
+      },
+      "database": {
+        "name": "Database",
+        "sub": "Data & Storage"
+      },
+      "devops": {
+        "name": "Tools & DevOps",
+        "sub": "Workflow & Delivery"
+      },
+      "ai": {
+        "name": "AI & Productivity",
+        "sub": "The future of engineering"
+      }
+    }
+  },
+  "contact": {
+    "pill": "Contact",
+    "headline": "Let's build something great together.",
+    "subtext": "Open to freelance, full-time, and collaboration opportunities.",
+    "emailLabel": "Email",
+    "githubLabel": "GitHub",
+    "linkedinLabel": "LinkedIn",
+    "emailAriaLabel": "Send email to Tiago Estetele",
+    "githubAriaLabel": "View Tiago Estetele's GitHub profile",
+    "linkedinAriaLabel": "View Tiago Estetele's LinkedIn profile",
+    "footer": "Designed & built by Tiago Estetele · 2026"
+  }
+}

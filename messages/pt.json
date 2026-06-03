@@ -1,0 +1,66 @@
+{
+  "meta": {
+    "title": "Tiago Estetele — Desenvolvedor Front-End",
+    "description": "Desenvolvedor Front-End especializado em React, Next.js, TypeScript, WordPress e Strapi. Construindo experiências web escaláveis e explorando o futuro da IA.",
+    "name": "Tiago Estetele"
+  },
+  "hero": {
+    "eyebrow": "Desenvolvedor Front-End",
+    "headline": "Construindo experiências web escaláveis e explorando o futuro da IA.",
+    "subtextBefore": "Especializado em",
+    "subtextTechs": "React, Next.js, TypeScript, WordPress",
+    "subtextAnd": "e",
+    "subtextStrapi": "Strapi",
+    "subtextAfter": ". Atualmente expandindo para Arquitetura de Software, Desenvolvimento Back-end e Engenharia de IA.",
+    "ctaContact": "Entrar em Contato",
+    "ctaStack": "Explorar Minha Stack",
+    "badges": {
+      "remote": "Remoto desde 2022",
+      "location": "Baseado no Brasil",
+      "ai": "Entusiasta de IA"
+    }
+  },
+  "technologies": {
+    "pill": "Minha Stack",
+    "heading": "As ferramentas que uso",
+    "subtext": "Tecnologias cuidadosamente escolhidas para aplicações web modernas, escaláveis e performáticas.",
+    "categories": {
+      "frontend": {
+        "name": "Frontend",
+        "sub": "UI & Experiência"
+      },
+      "backend": {
+        "name": "Backend",
+        "sub": "APIs & Serviços"
+      },
+      "cms": {
+        "name": "CMS",
+        "sub": "Gerenciamento de Conteúdo"
+      },
+      "database": {
+        "name": "Banco de Dados",
+        "sub": "Dados & Armazenamento"
+      },
+      "devops": {
+        "name": "Ferramentas & DevOps",
+        "sub": "Fluxo & Entrega"
+      },
+      "ai": {
+        "name": "IA & Produtividade",
+        "sub": "O futuro da engenharia"
+      }
+    }
+  },
+  "contact": {
+    "pill": "Contato",
+    "headline": "Vamos construir algo incrível juntos.",
+    "subtext": "Aberto a oportunidades de freelance, tempo integral e colaboração.",
+    "emailLabel": "E-mail",
+    "githubLabel": "GitHub",
+    "linkedinLabel": "LinkedIn",
+    "emailAriaLabel": "Enviar e-mail para Tiago Estetele",
+    "githubAriaLabel": "Ver perfil do GitHub de Tiago Estetele",
+    "linkedinAriaLabel": "Ver perfil do LinkedIn de Tiago Estetele",
+    "footer": "Projetado e construído por Tiago Estetele · 2026"
+  }
+}
