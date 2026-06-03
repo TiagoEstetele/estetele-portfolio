@@ -14,6 +14,11 @@ export const metadata: Metadata = {
   },
   description:
     'Front-End Developer specialized in React, Next.js, TypeScript, WordPress and Strapi. Building scalable web experiences and exploring the future of AI.',
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' }
+    ]
+  }
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {

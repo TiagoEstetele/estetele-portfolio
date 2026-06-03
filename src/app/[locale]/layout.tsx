@@ -90,6 +90,12 @@ export async function generateMetadata({
       },
     },
 
+    icons: {
+      icon: [
+        { url: '/favicon.svg', type: 'image/svg+xml' }
+      ]
+    },
+
     // ── Open Graph ────────────────────────────────────────────────────────
     openGraph: {
       type: 'website',
