@@ -5,9 +5,8 @@ import { Analytics } from '@vercel/analytics/react'
 import { routing } from '@/i18n/routing'
 import { LanguageSwitcher } from '@/components/common/LanguageSwitcher'
 import { buildJsonLdGraph } from '@/lib/seo'
+import { SITE_URL } from '@/lib/site'
 import type { Locale } from '@/types'
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://estetele.dev'
 
 // Keywords optimized for recruiter + developer searches in each language
 const KEYWORDS_EN = [

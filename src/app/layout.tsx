@@ -1,9 +1,8 @@
 import type { Metadata } from 'next'
 import { getLocale } from 'next-intl/server'
 import { inter } from '@/lib/fonts'
+import { SITE_URL } from '@/lib/site'
 import './globals.css'
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://estetele.dev'
 
 // Minimal fallback — locale-specific metadata is generated in [locale]/layout.tsx
 export const metadata: Metadata = {

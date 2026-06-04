@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.estetele.dev"
+        }
+      ],
+      "destination": "https://estetele.dev/:path*",
+      "statusCode": 308
+    }
+  ]
+}

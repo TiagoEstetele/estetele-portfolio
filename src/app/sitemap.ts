@@ -1,6 +1,5 @@
 import type { MetadataRoute } from 'next'
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://estetele.dev'
+import { SITE_URL } from '@/lib/site'
 
 // Use a fixed date so the file doesn't invalidate CDN cache on every build.
 // Update this manually when content changes.

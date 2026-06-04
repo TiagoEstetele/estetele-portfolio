@@ -1,4 +1,4 @@
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://estetele.dev'
+import { SITE_URL } from '@/lib/site'
 
 interface SchemaOptions {
   locale: string
