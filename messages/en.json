@@ -61,6 +61,8 @@
     "emailAriaLabel": "Send email to Tiago Estetele",
     "githubAriaLabel": "View Tiago Estetele's GitHub profile",
     "linkedinAriaLabel": "View Tiago Estetele's LinkedIn profile",
-    "footer": "Designed & built by Tiago Estetele · 2026"
+    "footer": "Designed & built by Tiago Estetele · Source on GitHub · 2026",
+    "footerLinkTitle": "estetele-portfolio — open-source portfolio repository on GitHub",
+    "footerLinkHidden": " (opens in new tab)"
   }
 }

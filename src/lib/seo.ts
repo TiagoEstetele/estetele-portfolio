@@ -1,4 +1,4 @@
-import { SITE_URL } from '@/lib/site'
+import { PORTFOLIO_REPO_URL, SITE_URL } from '@/lib/site'
 
 interface SchemaOptions {
   locale: string
@@ -88,6 +88,27 @@ export function buildWebSiteSchema() {
       'Portfolio of Tiago Estetele, Front-End Developer specialized in React, Next.js, TypeScript, and modern web engineering.',
     author: { '@id': `${SITE_URL}/#person` },
     inLanguage: ['en', 'pt-BR'],
+    isBasedOn: { '@id': `${PORTFOLIO_REPO_URL}#sourcecode` },
+  }
+}
+
+/**
+ * https://schema.org/SoftwareSourceCode — open-source portfolio repository
+ */
+export function buildSoftwareSourceCodeSchema() {
+  return {
+    '@type': 'SoftwareSourceCode',
+    '@id': `${PORTFOLIO_REPO_URL}#sourcecode`,
+    name: 'estetele-portfolio',
+    description:
+      'Open-source portfolio website built with Next.js, TypeScript, Tailwind CSS, and next-intl.',
+    url: PORTFOLIO_REPO_URL,
+    codeRepository: PORTFOLIO_REPO_URL,
+    programmingLanguage: ['TypeScript', 'JavaScript', 'CSS'],
+    runtimePlatform: 'Node.js',
+    license: 'https://opensource.org/licenses/MIT',
+    author: { '@id': `${SITE_URL}/#person` },
+    isPartOf: { '@id': `${SITE_URL}/#website` },
   }
 }
 
@@ -124,6 +145,7 @@ export function buildJsonLdGraph({ locale }: SchemaOptions): string {
     '@graph': [
       buildPersonSchema({ locale }),
       buildWebSiteSchema(),
+      buildSoftwareSourceCodeSchema(),
       buildProfilePageSchema({ locale }),
     ],
   })

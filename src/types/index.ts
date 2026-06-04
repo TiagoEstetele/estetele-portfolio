@@ -49,4 +49,6 @@ export interface ContactTranslations {
   githubAriaLabel: string
   linkedinAriaLabel: string
   footer: string
+  footerLinkTitle: string
+  footerLinkHidden: string
 }

@@ -53,6 +53,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     githubAriaLabel: tContact('githubAriaLabel'),
     linkedinAriaLabel: tContact('linkedinAriaLabel'),
     footer: tContact('footer'),
+    footerLinkTitle: tContact('footerLinkTitle'),
+    footerLinkHidden: tContact('footerLinkHidden'),
   }
 
   return (

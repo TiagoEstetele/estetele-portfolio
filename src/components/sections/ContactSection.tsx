@@ -2,6 +2,7 @@ import { SectionLabel } from '@/components/ui/SectionLabel'
 import { ContactCard } from '@/components/ui/ContactCard'
 import { MotionWrapper } from '@/components/ui/MotionWrapper'
 import { fadeInUp } from '@/lib/animations'
+import { PORTFOLIO_REPO_URL } from '@/lib/site'
 import type { ContactTranslations } from '@/types'
 
 interface ContactSectionProps {
@@ -70,9 +71,18 @@ export function ContactSection({ t }: ContactSectionProps) {
         <ContactCard t={t} />
 
         {/* Footer */}
-        <p className="mt-[72px] text-[13px] tracking-[-0.01em]" style={{ color: 'rgba(237,237,237,0.18)' }}>
-          {t.footer}
-        </p>
+        <footer className="mt-[72px]">
+          <a
+            href={PORTFOLIO_REPO_URL}
+            target="_blank"
+            rel="author noopener noreferrer"
+            title={t.footerLinkTitle}
+            className="footer-link text-[13px] tracking-[-0.01em]"
+          >
+            {t.footer}
+            <span className="sr-only">{t.footerLinkHidden}</span>
+          </a>
+        </footer>
       </MotionWrapper>
     </section>
   )
