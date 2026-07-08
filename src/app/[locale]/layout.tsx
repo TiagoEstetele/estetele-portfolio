@@ -12,7 +12,7 @@ import { TerminalShell } from '@/components/terminal/TerminalShell'
 import { buildJsonLdGraph } from '@/lib/seo'
 import { PAGES } from '@/lib/pages'
 import { SITE_URL } from '@/lib/site'
-import type { TerminalTranslations } from '@/types'
+import type { HelpMenuTranslations, TerminalTranslations } from '@/types'
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
@@ -76,6 +76,9 @@ export default async function LocaleLayout({
     // Raw too, so the `{cmd}` placeholder survives to the client and can be filled in
     // against whatever the visitor actually typed.
     commandNotFound: t.raw('commandNotFound') as string,
+    // Raw: `commands` is a list of objects, and `cd <page>` carries angle brackets
+    // that ICU would misread as an unclosed rich-text tag (same reason as `help`).
+    helpMenu: t.raw('helpMenu') as HelpMenuTranslations,
   }
 
   return (

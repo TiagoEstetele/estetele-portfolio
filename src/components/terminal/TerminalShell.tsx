@@ -7,6 +7,7 @@ import { LiveClock } from '@/components/ui/LiveClock'
 import { Uptime } from '@/components/ui/Uptime'
 import { PAGES, TAB_LABELS, hrefFor, pageFromPathname } from '@/lib/pages'
 import { BUILD, SHELL_USER } from '@/lib/site'
+import { HelpMenu } from './HelpMenu'
 import { TerminalLink } from './TerminalLink'
 import { TerminalNavContext } from './terminal-nav'
 import type { Locale, PageId, TerminalTranslations } from '@/types'
@@ -432,6 +433,10 @@ export function TerminalShell({ locale, t, children }: TerminalShellProps) {
           </div>
         </div>
       </div>
+
+      {/* Floating help — a sibling of the stage so no transformed ancestor shifts its
+          fixed positioning. */}
+      <HelpMenu t={t.helpMenu} />
     </TerminalNavContext.Provider>
   )
 }

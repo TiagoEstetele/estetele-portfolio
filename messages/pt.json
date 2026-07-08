@@ -33,7 +33,24 @@
     "whoami": "Tiago Estetele · desenvolvedor web · especialista em front-end",
     "sudo": "nice try. 😏 permissão negada.",
     "langUsage": "uso: lang en|pt",
-    "commandNotFound": "zsh: command not found: {cmd}. digite 'help'"
+    "commandNotFound": "zsh: command not found: {cmd}. digite 'help'",
+    "helpMenu": {
+      "toggleLabel": "Ajuda",
+      "closeLabel": "Fechar ajuda",
+      "title": "man portfolio",
+      "navTitle": "NAVEGAÇÃO",
+      "navBody": "Use as abas no topo da janela para trocar de página, ou navegue como num terminal de verdade: clique em qualquer lugar e digite comandos. Aperte Enter para executar.",
+      "cmdTitle": "COMANDOS",
+      "tip": "dica: dê 'cd' num caminho que não existe e veja o que acontece.",
+      "commands": [
+        { "cmd": "cd <página>", "desc": "vai para uma página, ex: cd stack" },
+        { "cmd": "ls", "desc": "lista todas as páginas disponíveis" },
+        { "cmd": "help", "desc": "mostra os comandos no prompt" },
+        { "cmd": "whoami", "desc": "quem é o Tiago" },
+        { "cmd": "lang en|pt", "desc": "troca o idioma" },
+        { "cmd": "clear", "desc": "limpa a saída do terminal" }
+      ]
+    }
   },
   "home": {
     "role": "desenvolvedor web · especialista em front-end · brasil",

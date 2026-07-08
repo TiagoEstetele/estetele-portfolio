@@ -33,6 +33,27 @@ export interface ExperienceItem {
   desc: string
 }
 
+/** A single row in the help panel's command reference. */
+export interface HelpCommand {
+  cmd: string
+  desc: string
+}
+
+/** Content for the floating help panel (`man portfolio`). */
+export interface HelpMenuTranslations {
+  /** Accessible name for the floating "?" toggle. */
+  toggleLabel: string
+  /** Accessible name for the panel's close button. */
+  closeLabel: string
+  /** Panel header, e.g. "man portfolio". */
+  title: string
+  navTitle: string
+  navBody: string
+  cmdTitle: string
+  tip: string
+  commands: readonly HelpCommand[]
+}
+
 /**
  * Strings the client-side terminal shell needs. Resolved on the server and passed
  * down as a plain object so the shell doesn't need a NextIntlClientProvider, which
@@ -49,6 +70,8 @@ export interface TerminalTranslations {
   langUsage: string
   /** Contains a literal `{cmd}` placeholder, substituted client-side. */
   commandNotFound: string
+  /** Content for the floating help panel. */
+  helpMenu: HelpMenuTranslations
 }
 
 export interface HomeTranslations {

@@ -628,6 +628,160 @@ html[data-cursor='custom'] .term-btn {
   color: var(--color-accent);
 }
 
+/* ── Help ── */
+
+/* Floating "?" toggle, bottom-right, above the terminal window. */
+.term-help-btn {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid #232323;
+  background: rgba(12, 12, 12, 0.9);
+  color: var(--term-text-soft);
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition:
+    transform 0.2s ease,
+    border-color 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.3s ease;
+}
+
+.term-help-btn:hover {
+  border-color: var(--term-border-accent);
+  color: var(--color-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 38px rgba(74, 222, 128, 0.18);
+}
+
+.term-help-btn:active {
+  transform: scale(0.92);
+}
+
+.term-help-btn[aria-expanded='true'] {
+  border-color: var(--term-border-accent);
+  background: #0e1a12;
+  color: var(--color-accent);
+}
+
+.term-help-panel {
+  position: fixed;
+  right: 22px;
+  bottom: 84px;
+  z-index: 50;
+  width: min(340px, calc(100vw - 44px));
+  max-height: calc(100dvh - 130px);
+  overflow-y: auto;
+  padding: 18px 20px;
+  border: 1px solid #223528;
+  border-radius: 12px;
+  background: rgba(9, 12, 10, 0.97);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.7);
+}
+
+.term-help-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.term-help-title {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--color-accent);
+}
+
+.term-help-close {
+  padding: 2px 6px;
+  border: none;
+  background: transparent;
+  color: var(--term-text-ghost);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.term-help-close:hover {
+  color: var(--color-accent);
+}
+
+.term-help-section {
+  margin-bottom: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+}
+
+.term-help-section::before {
+  content: '## ';
+}
+
+.term-help-body {
+  margin: 0 0 16px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--term-text-muted);
+}
+
+.term-help-cmds {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 16px;
+}
+
+.term-help-cmd {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.term-help-key {
+  padding: 3px 7px;
+  border: 1px solid #1e1e1e;
+  border-radius: 5px;
+  background: var(--term-hover-bg);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-align: center;
+  color: var(--color-foreground);
+}
+
+.term-help-desc {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--term-text-soft);
+}
+
+.term-help-tip {
+  padding-top: 12px;
+  border-top: 1px solid #161616;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--term-text-ghost);
+}
+
 /* ─── Utilities ──────────────────────────────────────────────────── */
 
 @utility sr-only {

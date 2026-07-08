@@ -33,7 +33,24 @@
     "whoami": "Tiago Estetele · web developer · front-end specialist",
     "sudo": "nice try. 😏 permission denied.",
     "langUsage": "usage: lang en|pt",
-    "commandNotFound": "zsh: command not found: {cmd}. type 'help'"
+    "commandNotFound": "zsh: command not found: {cmd}. type 'help'",
+    "helpMenu": {
+      "toggleLabel": "Help",
+      "closeLabel": "Close help",
+      "title": "man portfolio",
+      "navTitle": "NAVIGATION",
+      "navBody": "Use the tabs at the top of the window to jump between pages, or navigate like a real terminal: click anywhere and type commands. Press Enter to run them.",
+      "cmdTitle": "COMMANDS",
+      "tip": "tip: 'cd' into a path that doesn't exist and see what happens.",
+      "commands": [
+        { "cmd": "cd <page>", "desc": "go to a page, e.g. cd stack" },
+        { "cmd": "ls", "desc": "list all available pages" },
+        { "cmd": "help", "desc": "show commands in the prompt" },
+        { "cmd": "whoami", "desc": "who Tiago is" },
+        { "cmd": "lang en|pt", "desc": "switch language" },
+        { "cmd": "clear", "desc": "clear the terminal output" }
+      ]
+    }
   },
   "home": {
     "role": "web developer · front-end specialist · brazil",
