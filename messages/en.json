@@ -1,68 +1,113 @@
 {
   "meta": {
-    "title": "Tiago Estetele — Front-End Developer",
-    "description": "Front-End Developer specialized in React, Next.js, TypeScript, WordPress and Strapi. Building scalable web experiences and exploring the future of AI.",
-    "name": "Tiago Estetele"
-  },
-  "hero": {
-    "eyebrow": "Front-End Developer",
-    "headline": "Building scalable web experiences and exploring the future of AI.",
-    "subtextBefore": "Specialized in",
-    "subtextTechs": "React, Next.js, TypeScript, WordPress",
-    "subtextAnd": "and",
-    "subtextStrapi": "Strapi",
-    "subtextAfter": ". Currently expanding into Software Architecture, Back-end Development, and AI Engineering.",
-    "ctaContact": "Get in Touch",
-    "ctaStack": "Explore My Stack",
-    "badges": {
-      "remote": "Remote since 2022",
-      "location": "Based in Brazil",
-      "ai": "AI Enthusiast"
-    }
-  },
-  "technologies": {
-    "pill": "My Stack",
-    "heading": "The tools I build with",
-    "subtext": "Carefully chosen technologies for modern, scalable, and performant web applications.",
-    "categories": {
-      "frontend": {
-        "name": "Frontend",
-        "sub": "UI & Experience"
+    "name": "Tiago Estetele",
+    "title": "Tiago Estetele | Web Developer & Front-End Specialist",
+    "description": "Web developer specialized in front-end, with hands-on full stack experience and ambitious about where AI is taking software engineering.",
+    "pages": {
+      "about": {
+        "title": "About",
+        "description": "Web developer specialized in front-end, working remotely from Brazil since 2022. Going deeper into software architecture, back-end development, and AI engineering."
       },
-      "backend": {
-        "name": "Backend",
-        "sub": "APIs & Services"
+      "stack": {
+        "title": "Stack",
+        "description": "The technologies Tiago Estetele builds with: React, Next.js, TypeScript, Tailwind CSS, Node.js, headless CMS platforms, PostgreSQL, Docker, and AI tooling."
       },
-      "cms": {
-        "name": "CMS",
-        "sub": "Content Management"
+      "projects": {
+        "title": "Projects",
+        "description": "Selected work by Tiago Estetele: corporate websites, agribusiness platforms, and creative agency sites built with React, Next.js, and WordPress."
       },
-      "database": {
-        "name": "Database",
-        "sub": "Data & Storage"
+      "experience": {
+        "title": "Experience",
+        "description": "Tiago Estetele's professional experience as a front-end and full stack developer at Brivia, Polo BPM, and OKN."
       },
-      "devops": {
-        "name": "Tools & DevOps",
-        "sub": "Workflow & Delivery"
-      },
-      "ai": {
-        "name": "AI & Productivity",
-        "sub": "The future of engineering"
+      "contact": {
+        "title": "Contact",
+        "description": "Get in touch with Tiago Estetele. Open to freelance, full-time, and collaboration opportunities."
       }
     }
+  },
+  "terminal": {
+    "navLabel": "Site sections",
+    "footerHint": "type 'help' for commands",
+    "help": "commands: cd <page> · ls · whoami · lang en|pt · clear\npages: {pages}",
+    "whoami": "Tiago Estetele · web developer · front-end specialist",
+    "sudo": "nice try. 😏 permission denied.",
+    "langUsage": "usage: lang en|pt",
+    "commandNotFound": "zsh: command not found: {cmd}. type 'help'"
+  },
+  "home": {
+    "role": "web developer · front-end specialist · brazil",
+    "headline1": "Building scalable web experiences and exploring the future of",
+    "headlineAI": "AI",
+    "heroSub": "Web developer specialized in front-end, with hands-on full stack experience and ambitious about where AI is taking software engineering.",
+    "ctaContact": "Get in Touch",
+    "ctaStack": "Explore My Stack",
+    "hint": "tip: navigate with the tabs above, or type commands. try 'help'."
+  },
+  "about": {
+    "p1": "I'm a web developer, specialized in front-end, who cares about the details: clean architecture, fast interfaces, and code that other people enjoy maintaining. Since 2022 I've been working remotely from Brazil, shipping products with React, Next.js and headless CMS stacks.",
+    "p2": "Right now I'm going deeper: software architecture, back-end development, and AI engineering. I believe the best interfaces of the next decade will be built by people who understand the whole system."
+  },
+  "stack": {
+    "pill": "My Stack",
+    "subtext": "Carefully chosen technologies for modern, scalable, and performant web applications.",
+    "categories": {
+      "frontend": { "sub": "UI & Experience" },
+      "backend": { "sub": "APIs & Services" },
+      "cms": { "sub": "Content Management" },
+      "database": { "sub": "Data & Storage" },
+      "devops": { "sub": "Workflow & Delivery" },
+      "ai": { "sub": "The future of engineering" }
+    }
+  },
+  "projects": {
+    "pill": "Featured Projects",
+    "descriptions": [
+      "Corporate website focused on digital presence and institutional communication.",
+      "Agribusiness platform focused on customer engagement and loyalty programs.",
+      "Creative agency website with modern design and interactive user experience.",
+      "Corporate website focused on information security solutions.",
+      "Website blog with articles and questions for students."
+    ]
+  },
+  "experience": {
+    "items": [
+      {
+        "role": "Front-End Developer",
+        "company": "@ Brivia | The Creative Smartech",
+        "period": "Dec 2025 — Present",
+        "desc": "Full-time, remote. Building and maintaining web products for the agency's clients."
+      },
+      {
+        "role": "Full Stack Developer (Mid-level)",
+        "company": "@ Polo BPM",
+        "period": "Jun 2025 — Nov 2025",
+        "desc": "Development and maintenance of a Clinical Research Management platform, contributing mainly to the front-end in React with Tailwind CSS. Remote."
+      },
+      {
+        "role": "Front-End Developer",
+        "company": "@ OKN",
+        "period": "Jan 2024 — Jun 2025",
+        "desc": "Development and maintenance of web systems using JavaScript and React. Remote, full-time."
+      },
+      {
+        "role": "Intern",
+        "company": "@ OKN",
+        "period": "Sep 2022 — Jan 2024",
+        "desc": "Support in the maintenance and development of web systems using JavaScript and PHP."
+      }
+    ]
   },
   "contact": {
     "pill": "Contact",
     "headline": "Let's build something great together.",
     "subtext": "Open to freelance, full-time, and collaboration opportunities.",
-    "emailLabel": "Email",
-    "githubLabel": "GitHub",
-    "linkedinLabel": "LinkedIn",
+    "cta": "Get in Touch",
     "emailAriaLabel": "Send email to Tiago Estetele",
     "githubAriaLabel": "View Tiago Estetele's GitHub profile",
-    "linkedinAriaLabel": "View Tiago Estetele's LinkedIn profile",
-    "footer": "Designed & built by Tiago Estetele · Source on GitHub · 2026",
-    "footerLinkTitle": "estetele-portfolio — open-source portfolio repository on GitHub",
-    "footerLinkHidden": " (opens in new tab)"
+    "linkedinAriaLabel": "View Tiago Estetele's LinkedIn profile"
+  },
+  "notFound": {
+    "description": "This directory doesn't exist, was moved, or never compiled. Let's get you back to safety."
   }
 }

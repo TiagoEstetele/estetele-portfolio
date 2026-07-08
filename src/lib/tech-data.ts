@@ -1,71 +1,66 @@
 import type { TechCategory } from '@/types'
 
+/**
+ * Language-neutral stack modules. The `sub` label for each module is localized
+ * in messages under `technologies.categories.<id>.sub`.
+ *
+ * These tags are the single source of truth for the stack: `src/lib/seo.ts` derives
+ * the Person schema's `knowsAbout`/`skills` from them, so adding a tag here also
+ * surfaces it in the structured data.
+ */
 export const TECH_CATEGORIES: TechCategory[] = [
   {
     id: 'frontend',
-    iconName: 'LayoutTemplate',
-    gridSpan: 2,
-    accentVariant: 'violet',
-    tagVariant: 'default',
+    dir: 'frontend/',
     tags: [
       'React',
       'Next.js',
+      'Gatsby',
       'TypeScript',
-      'JavaScript',
-      'PHP',
-      'HTML5',
-      'CSS3',
       'Tailwind CSS',
-      'Styled Components',
-      'Framer Motion',
+      'SASS/SCSS',
+      'styled-components',
+      'shadcn/ui',
+      'HTML',
+      'CSS',
+      'PHP',
     ],
   },
   {
     id: 'backend',
-    iconName: 'Server',
-    accentVariant: 'tangerine',
-    tagVariant: 'default',
-    tags: ['Node.js', 'Express', 'REST APIs', 'GraphQL'],
+    dir: 'backend/',
+    tags: ['Node.js', 'Nest.js', 'Express', 'REST APIs'],
   },
   {
     id: 'cms',
-    iconName: 'Database',
-    accentVariant: 'violet',
-    tagVariant: 'default',
-    tags: ['WordPress', 'Strapi', 'Contentful', 'AEM'],
+    dir: 'cms/',
+    tags: ['WordPress', 'Strapi', 'Payload CMS', 'Contentful', 'Adobe Experience Manager'],
   },
   {
     id: 'database',
-    iconName: 'DatabaseZap',
-    accentVariant: 'green',
-    tagVariant: 'default',
-    tags: ['MySQL', 'PostgreSQL', 'MongoDB'],
+    dir: 'database/',
+    tags: ['PostgreSQL', 'MySQL', 'MongoDB'],
   },
   {
     id: 'devops',
-    iconName: 'Terminal',
-    accentVariant: 'yellow',
-    tagVariant: 'default',
-    tags: ['Git', 'Docker', 'Vercel', 'GitHub Actions', 'Vite', 'Linux'],
+    dir: 'devops/',
+    tags: ['Git', 'GitHub', 'GitHub Actions', 'Docker', 'Vercel', 'Vite', 'Linux', 'CI/CD'],
   },
   {
     id: 'ai',
-    iconName: 'Bot',
-    gridSpan: 2,
-    accentVariant: 'violet',
-    tagVariant: 'violet',
+    dir: 'ai/',
     tags: [
+      'Claude',
       'ChatGPT',
       'GitHub Copilot',
       'Cursor',
-      'Claude',
-      'Prompt Engineering',
       'OpenAI API',
       'LangChain',
       'RAG',
       'MCP',
-      'AI-driven Development',
+      'Prompt Engineering',
       'Agent Skills',
+      'AI-driven Development',
       'Automation',
     ],
   },
