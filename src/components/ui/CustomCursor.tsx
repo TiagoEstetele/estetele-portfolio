@@ -35,8 +35,9 @@ const subscribe = (onChange: () => void) => {
  * first client render agree; only the listeners are conditional. They light up on the
  * first mousemove and hide again when the pointer leaves the document.
  *
- * Gated on the same media query that hides the native cursor, and subscribed to it, so
- * toggling "reduce motion" mid-session can never leave the page with two cursors or none.
+ * Gated on the same media query that hides the native cursor (a real pointing device),
+ * and subscribed to it, so a device change mid-session can never leave the page with two
+ * cursors or none.
  */
 export function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null)

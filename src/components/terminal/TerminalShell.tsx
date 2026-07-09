@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 import { Link, usePathname, useRouter } from '@/i18n/routing'
 import { LiveClock } from '@/components/ui/LiveClock'
@@ -56,30 +56,10 @@ const BOOT_HOLD_MS = 520
  */
 let hasBooted = false
 
-// Read as an external store rather than in an effect: setting state from an effect
-// body to hide the boot log would cost a cascading render (and React lints against it).
-// The server snapshot is `false`, so the boot markup is server-rendered and hydration
-// agrees; React then re-renders once if the user actually prefers reduced motion.
-const REDUCED_MOTION = '(prefers-reduced-motion: reduce)'
-let reducedMotionQuery: MediaQueryList | null = null
-const getReducedMotionQuery = () => (reducedMotionQuery ??= window.matchMedia(REDUCED_MOTION))
-
-const subscribeToReducedMotion = (onChange: () => void) => {
-  const query = getReducedMotionQuery()
-  query.addEventListener('change', onChange)
-  return () => query.removeEventListener('change', onChange)
-}
-
 export function TerminalShell({ locale, t, children }: TerminalShellProps) {
   const router = useRouter()
   const pathname = usePathname()
   const page = pageFromPathname(pathname)
-
-  const prefersReducedMotion = useSyncExternalStore(
-    subscribeToReducedMotion,
-    () => getReducedMotionQuery().matches,
-    () => false,
-  )
 
   // Read once on the first render of this mount. On the server (and during hydration)
   // `hasBooted` is false, so the markup and the first client render always agree.
@@ -87,7 +67,7 @@ export function TerminalShell({ locale, t, children }: TerminalShellProps) {
   const [booting, setBooting] = useState(() => !hasBooted)
   const [bootStep, setBootStep] = useState(0)
 
-  const showBoot = booting && !prefersReducedMotion
+  const showBoot = booting
 
   const [contentIn, setContentIn] = useState(true)
   const [typed, setTyped] = useState('')
@@ -118,13 +98,6 @@ export function TerminalShell({ locale, t, children }: TerminalShellProps) {
   useEffect(() => {
     if (hasBooted) return
 
-    // Nothing to animate, and `showBoot` already hides the overlay — just mark the
-    // document as booted so a later locale switch doesn't try to replay it.
-    if (prefersReducedMotion) {
-      hasBooted = true
-      return
-    }
-
     let step = 0
     const advance = () => {
       step += 1
@@ -146,7 +119,7 @@ export function TerminalShell({ locale, t, children }: TerminalShellProps) {
     }
 
     later(BOOT_FIRST_LINE_MS, advance)
-  }, [later, prefersReducedMotion])
+  }, [later])
 
   // ── Route arrival: the new screen has rendered, so bring it back in ────────
   const lastPathname = useRef(pathname)

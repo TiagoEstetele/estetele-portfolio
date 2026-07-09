@@ -5,7 +5,7 @@ import { pointer } from '@/lib/pointer'
 
 // Drifting glyph field rendered on a fixed, full-viewport canvas. Three overlapping sine
 // waves decide which cells light up, giving organic green "matrix" patches behind the
-// page. Throttled to ~20fps; disabled under prefers-reduced-motion.
+// page. Throttled to ~20fps.
 //
 // Cells near the pointer also glow, and churn through characters ten times faster. The
 // glow is centred on the cursor *ring* (see src/lib/pointer.ts), which trails the actual
@@ -26,9 +26,6 @@ export function MatrixBackground() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
 
   useEffect(() => {
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reduced) return
-
     const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext('2d')

@@ -51,11 +51,11 @@ export function resetPointer() {
 }
 
 /**
- * When the custom cursor is allowed to take over: a real pointing device, and a visitor
- * who hasn't asked for less motion. Touch and stylus fall through to the native cursor.
+ * When the custom cursor is allowed to take over: a real pointing device. Touch and
+ * stylus fall through to the native cursor.
  *
  * This is the single source of truth. `globals.css` hides the native cursor off the
  * `data-cursor="custom"` attribute that `<CustomCursor>` sets only when this matches,
  * so CSS and JS cannot disagree about who owns the cursor.
  */
-export const CURSOR_MEDIA_QUERY = '(pointer: fine) and (prefers-reduced-motion: no-preference)'
+export const CURSOR_MEDIA_QUERY = '(pointer: fine)'
