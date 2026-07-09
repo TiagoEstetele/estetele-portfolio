@@ -5,9 +5,9 @@ import type { ProjectsTranslations } from '@/types'
 export function ProjectsScreen({ t }: { t: ProjectsTranslations }) {
   return (
     <div>
-      <ScreenEyebrow page="projects" label={t.pill} />
+      <ScreenEyebrow page="projects" label={t.pill} className="term-in mb-6" />
 
-      <div className="flex flex-col gap-2.5">
+      <div className="term-in term-in-1 flex flex-col gap-2.5">
         {PROJECTS.map((project, index) => (
           <a
             key={project.url}

@@ -8,7 +8,7 @@ const INITIALS = 'TE'
 export function HomeScreen({ t }: { t: HomeTranslations }) {
   return (
     <div>
-      <div className="mb-7 flex items-center gap-3.5">
+      <div className="term-in term-in--home mb-7 flex items-center gap-3.5">
         <div className="term-avatar" aria-hidden="true">
           {INITIALS}
         </div>
@@ -27,7 +27,7 @@ export function HomeScreen({ t }: { t: HomeTranslations }) {
       </div>
 
       <h1
-        className="max-w-[760px] font-semibold"
+        className="term-in term-in--home term-in-1 max-w-[760px] font-semibold"
         style={{
           fontSize: 'clamp(32px, 5.4vw, 56px)',
           letterSpacing: '-0.03em',
@@ -39,13 +39,13 @@ export function HomeScreen({ t }: { t: HomeTranslations }) {
       </h1>
 
       <p
-        className="mt-[22px] max-w-[560px] text-[17px]"
+        className="term-in term-in--home term-in-2 mt-[22px] max-w-[560px] text-[17px]"
         style={{ lineHeight: 1.65, color: 'var(--term-text-muted)' }}
       >
         {t.heroSub}
       </p>
 
-      <div className="mt-8 flex flex-wrap items-center gap-3">
+      <div className="term-in term-in--home term-in-3 mt-8 flex flex-wrap items-center gap-3">
         <TerminalLink page="contact" className="term-btn term-btn--primary">
           {t.ctaContact}
         </TerminalLink>
@@ -55,7 +55,7 @@ export function HomeScreen({ t }: { t: HomeTranslations }) {
       </div>
 
       <div
-        className="mt-9 font-mono text-[11px]"
+        className="term-in term-in--home term-in-5 mt-9 font-mono text-[11px]"
         style={{ color: 'var(--term-text-trace)', lineHeight: 1.9 }}
       >
         {t.hint}

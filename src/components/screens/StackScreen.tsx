@@ -5,17 +5,17 @@ import type { StackTranslations } from '@/types'
 export function StackScreen({ t }: { t: StackTranslations }) {
   return (
     <div>
-      <ScreenEyebrow page="stack" label={t.pill} className="mb-2" />
+      <ScreenEyebrow page="stack" label={t.pill} className="term-in mb-2" />
 
       <p
-        className="mb-6 max-w-[480px] font-mono text-[12px]"
+        className="term-in term-in-1 mb-6 max-w-[480px] font-mono text-[12px]"
         style={{ color: 'var(--term-text-faint)', lineHeight: 1.7 }}
       >
         {t.subtext}
       </p>
 
       <div
-        className="grid gap-3"
+        className="term-in term-in-2 grid gap-3"
         style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))' }}
       >
         {TECH_CATEGORIES.map((category) => (

@@ -4,9 +4,9 @@ import type { ExperienceTranslations } from '@/types'
 export function ExperienceScreen({ t }: { t: ExperienceTranslations }) {
   return (
     <div>
-      <ScreenEyebrow page="experience" label="experience" />
+      <ScreenEyebrow page="experience" label="experience" className="term-in mb-6" />
 
-      <ol className="flex flex-col">
+      <ol className="term-in term-in-1 flex flex-col">
         {t.items.map((item) => (
           <li
             key={`${item.company}-${item.period}`}

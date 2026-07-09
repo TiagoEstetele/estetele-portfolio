@@ -63,7 +63,28 @@
   },
   "about": {
     "p1": "Sou um desenvolvedor web, especializado em front-end, que se importa com os detalhes: arquitetura limpa, interfaces rápidas e código que outras pessoas gostam de manter. Desde 2022 trabalho remotamente do Brasil, entregando produtos com React, Next.js e CMS headless.",
-    "p2": "Agora estou indo mais fundo: arquitetura de software, back-end e engenharia de IA. Acredito que as melhores interfaces da próxima década serão construídas por quem entende o sistema inteiro."
+    "p2": "Agora estou indo mais fundo: arquitetura de software, back-end e engenharia de IA. Acredito que as melhores interfaces da próxima década serão construídas por quem entende o sistema inteiro.",
+    "eduTitle": "FORMAÇÃO ACADÊMICA",
+    "education": [
+      {
+        "course": "Curso Superior de Tecnologia (CST), Análise e Desenvolvimento de Sistemas",
+        "period": "fev de 2022 – jan de 2024",
+        "tags": ["JavaScript", "React.js", "Node.js", "SQL", "POO"]
+      },
+      {
+        "course": "Pós-graduação Lato Sensu - MBA, Computer Software Engineering",
+        "period": "fev de 2025 – ago de 2025",
+        "tags": [
+          "Ciclo de vida de software",
+          "Engenharia de requisitos",
+          "Arquitetura de software",
+          "DevOps",
+          "Cloud",
+          "Qualidade de software",
+          "Gestão ágil"
+        ]
+      }
+    ]
   },
   "stack": {
     "pill": "Minha Stack",

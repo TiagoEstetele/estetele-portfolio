@@ -6,14 +6,14 @@ export function ContactScreen({ t }: { t: ContactTranslations }) {
   return (
     <div className="py-6 text-center">
       <div
-        className="font-mono text-[12px]"
+        className="term-in font-mono text-[12px]"
         style={{ color: 'var(--color-accent)', letterSpacing: '0.08em' }}
       >
         {SCREEN_META.contact.index} / {t.pill}
       </div>
 
       <h1
-        className="mx-auto mt-[18px] max-w-[540px] font-semibold"
+        className="term-in term-in-1 mx-auto mt-[18px] max-w-[540px] font-semibold"
         style={{
           fontSize: 'clamp(28px, 4.5vw, 44px)',
           letterSpacing: '-0.03em',
@@ -24,7 +24,7 @@ export function ContactScreen({ t }: { t: ContactTranslations }) {
       </h1>
 
       <p
-        className="mx-auto mt-3.5 max-w-[400px] text-[15px]"
+        className="term-in term-in-2 mx-auto mt-3.5 max-w-[400px] text-[15px]"
         style={{ color: 'var(--term-text-soft)', lineHeight: 1.6 }}
       >
         {t.subtext}

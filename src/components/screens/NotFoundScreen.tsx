@@ -25,7 +25,7 @@ export function NotFoundScreen({ t }: { t: NotFoundTranslations }) {
       </div>
 
       <h1
-        className="mt-7 font-semibold"
+        className="term-in mt-7 font-semibold"
         style={{
           fontSize: 'clamp(64px, 12vw, 110px)',
           letterSpacing: '-0.04em',
@@ -36,7 +36,7 @@ export function NotFoundScreen({ t }: { t: NotFoundTranslations }) {
       </h1>
 
       <p
-        className="mt-4 max-w-[400px] text-[16px]"
+        className="term-in term-in-1 mt-4 max-w-[400px] text-[16px]"
         style={{ lineHeight: 1.65, color: 'var(--term-text-soft)' }}
       >
         {t.description}

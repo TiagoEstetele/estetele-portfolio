@@ -24,8 +24,10 @@ const BOOT_LINES = [
   { tag: '[ OK ]', text: 'loading modules: react · next · typescript' },
   { tag: '[ OK ]', text: 'connecting to estetele.dev ... 200' },
   { tag: '[ OK ]', text: 'env: remote · brazil · utc-3' },
-  { tag: '$', text: './portfolio --start', bright: true },
 ]
+
+/** Typed out char-by-char once the log lands, then the terminal hands over. */
+const BOOT_CMD = './portfolio --start'
 
 const LOCALES = [
   { code: 'en', hrefLang: 'en', name: 'English' },
@@ -46,7 +48,12 @@ const CONTENT_FADE_MS = 240
 const BOOT_FIRST_LINE_MS = 650
 const BOOT_LINE_BASE_MS = 170
 const BOOT_LINE_JITTER_MS = 200
-const BOOT_HOLD_MS = 520
+/** Beat after the last log line before the prompt starts typing `./portfolio --start`. */
+const BOOT_TYPE_HOLD_MS = 380
+/** Per-character delay of that typed command. */
+const BOOT_TYPE_CHAR_MS = 38
+/** Beat after the command finishes before the boot log yields to the content. */
+const BOOT_SETTLE_MS = 380
 
 /**
  * Survives client-side navigation — including a locale switch, which remounts this
@@ -66,6 +73,8 @@ export function TerminalShell({ locale, t, children }: TerminalShellProps) {
   const [entering] = useState(() => !hasBooted)
   const [booting, setBooting] = useState(() => !hasBooted)
   const [bootStep, setBootStep] = useState(0)
+  const [bootTyping, setBootTyping] = useState(false)
+  const [bootTypedCmd, setBootTypedCmd] = useState('')
 
   const showBoot = booting
 
@@ -78,6 +87,8 @@ export function TerminalShell({ locale, t, children }: TerminalShellProps) {
   const viewport = useRef<HTMLDivElement>(null)
   const timeouts = useRef<number[]>([])
   const typer = useRef<number | null>(null)
+  /** When the fade-out started, so the arrival can subtract the route round-trip. */
+  const leaveAt = useRef<number | null>(null)
 
   const clearPending = useCallback(() => {
     timeouts.current.forEach(clearTimeout)
@@ -98,6 +109,31 @@ export function TerminalShell({ locale, t, children }: TerminalShellProps) {
   useEffect(() => {
     if (hasBooted) return
 
+    const handOver = () => {
+      hasBooted = true
+      setBooting(false)
+      // Drop the content to its "out" position for a frame so it fades in behind
+      // the boot log rather than snapping into place.
+      setContentIn(false)
+      later(60, () => setContentIn(true))
+    }
+
+    // The log has landed; type `./portfolio --start` a character at a time, then hold
+    // a beat before the terminal yields to the first screen.
+    const typeCommand = () => {
+      setBootTyping(true)
+      let index = 0
+      typer.current = window.setInterval(() => {
+        index += 1
+        setBootTypedCmd(BOOT_CMD.slice(0, index))
+        if (index < BOOT_CMD.length) return
+
+        clearInterval(typer.current!)
+        typer.current = null
+        later(BOOT_SETTLE_MS, handOver)
+      }, BOOT_TYPE_CHAR_MS)
+    }
+
     let step = 0
     const advance = () => {
       step += 1
@@ -108,14 +144,7 @@ export function TerminalShell({ locale, t, children }: TerminalShellProps) {
         return
       }
 
-      later(BOOT_HOLD_MS, () => {
-        hasBooted = true
-        setBooting(false)
-        // Drop the content to its "out" position for a frame so it fades in behind
-        // the boot log rather than snapping into place.
-        setContentIn(false)
-        later(60, () => setContentIn(true))
-      })
+      later(BOOT_TYPE_HOLD_MS, typeCommand)
     }
 
     later(BOOT_FIRST_LINE_MS, advance)
@@ -130,19 +159,33 @@ export function TerminalShell({ locale, t, children }: TerminalShellProps) {
     clearPending()
     setTyped('')
     setOutput('')
-    setBusy(false)
-    setContentIn(true)
     if (viewport.current) viewport.current.scrollTop = 0
-  }, [pathname, clearPending])
 
-  /** Fade out, push, and let the arrival effect above fade the new screen in. */
+    // The push ran concurrently with the fade-out, so the route round-trip overlaps
+    // it instead of following it (invisible in prod, a real request in `next dev`).
+    // Hold at the faded-out position for whatever is left of CONTENT_FADE_MS, so the
+    // cross-fade keeps its intended length no matter how long the round-trip took —
+    // and keep input parked until the screen is actually back.
+    const reveal = () => {
+      setContentIn(true)
+      setBusy(false)
+    }
+    const elapsed = leaveAt.current === null ? CONTENT_FADE_MS : Date.now() - leaveAt.current
+    leaveAt.current = null
+    const remaining = Math.max(0, CONTENT_FADE_MS - elapsed)
+    if (remaining === 0) reveal()
+    else later(remaining, reveal)
+  }, [pathname, clearPending, later])
+
+  /** Fade out and push at once; the arrival effect fades the new screen back in. */
   const leaveTo = useCallback(
     (href: string) => {
       setBusy(true)
+      leaveAt.current = Date.now()
       setContentIn(false)
-      later(CONTENT_FADE_MS, () => router.push(href))
+      router.push(href)
     },
-    [later, router],
+    [router],
   )
 
   /** `cd` onto the screen we're already on: no route change, just a re-entry. */
@@ -172,8 +215,9 @@ export function TerminalShell({ locale, t, children }: TerminalShellProps) {
         clearInterval(typer.current!)
         typer.current = null
         later(TYPE_SETTLE_MS, () => {
+          leaveAt.current = Date.now()
           setContentIn(false)
-          later(CONTENT_FADE_MS, () => router.push(hrefFor(target)))
+          router.push(hrefFor(target))
         })
       }, TYPE_INTERVAL_MS)
     },
@@ -317,8 +361,8 @@ export function TerminalShell({ locale, t, children }: TerminalShellProps) {
             </span>
           </div>
 
-          {/* tabs + locale */}
-          <div className="term-nav">
+          {/* tabs + locale — held back until the boot log hands over */}
+          <div className={showBoot ? 'term-nav term-nav--booting' : 'term-nav'}>
             <nav className="term-tabs" aria-label={t.navLabel}>
               {PAGES.map((entry) => (
                 <TerminalLink
@@ -369,14 +413,16 @@ export function TerminalShell({ locale, t, children }: TerminalShellProps) {
             {showBoot && (
               <div className="term-boot" aria-hidden="true">
                 {BOOT_LINES.slice(0, bootStep).map((line) => (
-                  <div
-                    key={line.text}
-                    style={line.bright ? { color: 'var(--color-foreground)' } : undefined}
-                  >
+                  <div key={line.text} className="term-boot-line">
                     <span style={{ color: 'var(--color-accent)' }}>{line.tag}</span> {line.text}
                   </div>
                 ))}
-                <span className="term-cursor term-cursor--boot" />
+                {bootTyping && (
+                  <div className="term-boot-line" style={{ color: 'var(--color-foreground)' }}>
+                    {bootTypedCmd}
+                    <span className="term-cursor" style={{ marginLeft: 1, verticalAlign: -2 }} />
+                  </div>
+                )}
               </div>
             )}
           </div>

@@ -84,9 +84,29 @@ export interface HomeTranslations {
   hint: string
 }
 
+/** Language-neutral academic entry (see src/lib/education-data.ts). */
+export interface EducationEntry {
+  /** Monogram shown in the badge, e.g. "UNIP". */
+  mark: string
+  /** Badge background — the institution's brand color. */
+  color: string
+  school: string
+}
+
+/** Localized detail for an academic entry (same order as EDUCATION). */
+export interface EducationDetail {
+  course: string
+  period: string
+  tags: readonly string[]
+}
+
 export interface AboutTranslations {
   p1: string
   p2: string
+  /** Section heading, e.g. "ACADEMIC BACKGROUND". */
+  eduTitle: string
+  /** Per-entry course/period/tags, aligned with EDUCATION. */
+  education: readonly EducationDetail[]
 }
 
 export interface StackTranslations {

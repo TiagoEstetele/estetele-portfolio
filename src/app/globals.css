@@ -105,6 +105,19 @@
     }
   }
 
+  /* Per-element entrance. Screens layer this over the viewport cross-fade so every
+     in-terminal navigation reveals its content in a soft, staggered cascade. */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
   /* The window's entrance. Declared as an animation rather than driven from state,
      so the server-rendered HTML already sits at the final, visible values — a crawler
      (or a reader with JS disabled) never sees an `opacity: 0` window. */
@@ -244,6 +257,17 @@ html[data-cursor='custom'] .term-btn {
   padding: 8px 12px;
   border-bottom: 1px solid var(--term-border-soft);
   background: var(--term-rail-bg);
+  transition:
+    opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Held back until the boot log hands over, so the tabs slide in with the first
+   screen rather than sitting there through the whole boot sequence. */
+.term-nav--booting {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
 }
 
 .term-tabs {
@@ -369,6 +393,11 @@ html[data-cursor='custom'] .term-btn {
   color: var(--term-text-muted);
 }
 
+/* Each log line and the final typed command fade up as they land. */
+.term-boot-line {
+  animation: fadeUp 0.32s ease both;
+}
+
 .term-cursor {
   display: inline-block;
   width: 8px;
@@ -376,10 +405,6 @@ html[data-cursor='custom'] .term-btn {
   flex-shrink: 0;
   background: var(--color-accent);
   animation: blink 1.1s step-end infinite;
-}
-
-.term-cursor--boot {
-  animation-duration: 0.7s;
 }
 
 /* ── Prompt ── */
@@ -431,6 +456,34 @@ html[data-cursor='custom'] .term-btn {
 
 /* ─── Screen content ─────────────────────────────────────────────── */
 
+/* Staggered entrance. `term-in` fades an element up on mount; the numbered
+   companions delay it, so each screen reveals top-to-bottom. Plays on every
+   in-terminal navigation, since the target screen mounts fresh. */
+.term-in {
+  animation: fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Home leans a touch slower to match its larger type. */
+.term-in--home {
+  animation-duration: 0.5s;
+}
+
+.term-in-1 {
+  animation-delay: 0.05s;
+}
+.term-in-2 {
+  animation-delay: 0.1s;
+}
+.term-in-3 {
+  animation-delay: 0.15s;
+}
+.term-in-4 {
+  animation-delay: 0.2s;
+}
+.term-in-5 {
+  animation-delay: 0.24s;
+}
+
 /* `01 / about · cat about.txt` — <b> is the accent index, <i> the shell command. */
 .term-eyebrow {
   font-family: var(--font-mono);
@@ -446,6 +499,63 @@ html[data-cursor='custom'] .term-btn {
 .term-eyebrow i {
   font-style: normal;
   color: var(--term-text-whisper);
+}
+
+/* ── About: academic background ── */
+
+.term-edu-title {
+  margin-bottom: 16px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+}
+
+.term-edu-title::before {
+  content: '## ';
+}
+
+.term-edu-card {
+  display: flex;
+  gap: 14px;
+  padding: 16px 18px;
+  border: 1px solid var(--term-border);
+  border-radius: 9px;
+  background: var(--term-panel-bg);
+  transition:
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.term-edu-card:hover {
+  border-color: var(--term-border-accent);
+  transform: translateY(-2px);
+}
+
+.term-edu-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #050505;
+}
+
+.term-edu-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--term-text-soft);
+  border: 1px solid #1e1e1e;
+  border-radius: 5px;
+  padding: 3px 7px;
+  background: var(--term-chip-bg);
 }
 
 /* ── Buttons ── */
