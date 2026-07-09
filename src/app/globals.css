@@ -368,11 +368,7 @@ html[data-cursor='custom'] .term-btn {
      wider on `home` than on `stack`, and the width visibly snaps as you switch tabs. */
   scrollbar-gutter: stable;
   padding: var(--term-pad);
-  /* Promote to its own layer so the cross-fade is composited, never repainted. */
-  will-change: opacity, transform;
-  transition:
-    opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /*
@@ -461,6 +457,7 @@ html[data-cursor='custom'] .term-btn {
    in-terminal navigation, since the target screen mounts fresh. */
 .term-in {
   animation: fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  opacity: 1;
 }
 
 /* Home leans a touch slower to match its larger type. */

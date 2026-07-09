@@ -404,7 +404,8 @@ export function TerminalShell({ locale, t, children }: TerminalShellProps) {
               className="term-viewport"
               style={{
                 opacity: contentIn ? 1 : 0,
-                transform: contentIn ? 'translateY(0px)' : 'translateY(16px)',
+                pointerEvents: contentIn ? 'auto' : 'none',
+                visibility: contentIn ? 'visible' : 'hidden',
               }}
             >
               {children}
