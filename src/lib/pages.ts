@@ -2,7 +2,7 @@ import type { PageId } from '@/types'
 
 /**
  * The terminal's directory listing. Order drives the nav tabs, the `ls` output,
- * the numbered eyebrow on each screen (`01 / about`), and the sitemap.
+ * and the sitemap.
  */
 export const PAGES = ['home', 'about', 'stack', 'projects', 'experience', 'contact'] as const
 
@@ -35,15 +35,3 @@ export const TAB_LABELS: Record<PageId, string> = {
   experience: 'experience',
   contact: 'contact',
 }
-
-/**
- * The `NN /` prefix and the fake shell command shown in each screen's eyebrow.
- * `home` has no eyebrow, so it's absent here.
- */
-export const SCREEN_META = {
-  about: { index: '01', command: 'cat about.txt' },
-  stack: { index: '02', command: 'ls -la ./stack' },
-  projects: { index: '03', command: 'git log --featured' },
-  experience: { index: '04', command: 'git log --oneline' },
-  contact: { index: '05', command: '' },
-} as const satisfies Record<Exclude<PageId, 'home'>, { index: string; command: string }>

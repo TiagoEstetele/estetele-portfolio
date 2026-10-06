@@ -29,11 +29,58 @@
   "terminal": {
     "navLabel": "Seções do site",
     "footerHint": "digite 'help' para ver os comandos",
-    "help": "comandos: cd <página> · ls · whoami · lang en|pt · clear\npáginas: {pages}",
+    "help": "comandos: cd <página> · ls · pwd · history · echo · man · whoami · lang en|br · clear\npáginas: {pages}",
     "whoami": "Tiago Estetele · desenvolvedor web · especialista em front-end",
     "sudo": "nice try. 😏 permissão negada.",
-    "langUsage": "uso: lang en|pt",
-    "commandNotFound": "zsh: command not found: {cmd}. digite 'help'"
+    "langUsage": "uso: lang en|br",
+    "commandNotFound": "zsh: command not found: {cmd}. digite 'help'",
+    "historyEmpty": "sem histórico ainda"
+  },
+  "help": {
+    "label": "Ajuda",
+    "close": "Fechar ajuda",
+    "navTitle": "NAVEGAÇÃO",
+    "navBody": "Use as abas no topo da janela para trocar de página, ou navegue como num terminal de verdade: clique em qualquer lugar e digite comandos. Aperte Enter para executar.",
+    "cmdTitle": "COMANDOS",
+    "commands": [
+      {
+        "cmd": "cd <página>",
+        "desc": "vai para uma página, ex: cd stack"
+      },
+      {
+        "cmd": "ls",
+        "desc": "lista todas as páginas disponíveis"
+      },
+      {
+        "cmd": "pwd",
+        "desc": "mostra o diretório atual"
+      },
+      {
+        "cmd": "history",
+        "desc": "mostra comandos já digitados (↑/↓ também navega)"
+      },
+      {
+        "cmd": "echo <texto>",
+        "desc": "repete o texto digitado"
+      },
+      {
+        "cmd": "man",
+        "desc": "abre este painel de ajuda"
+      },
+      {
+        "cmd": "whoami",
+        "desc": "quem é o Tiago"
+      },
+      {
+        "cmd": "lang en|br",
+        "desc": "troca o idioma"
+      },
+      {
+        "cmd": "clear",
+        "desc": "limpa a saída do terminal"
+      }
+    ],
+    "tip": "dica: dê 'cd' num caminho que não existe e veja o que acontece."
   },
   "home": {
     "role": "desenvolvedor web · especialista em front-end · brasil",
@@ -42,26 +89,73 @@
     "heroSub": "Desenvolvedor web especializado em front-end, com experiência prática em full stack e ambicioso com o rumo que a IA está dando à engenharia de software.",
     "ctaContact": "Fale Comigo",
     "ctaStack": "Conheça Minha Stack",
-    "hint": "dica: navegue pelas abas acima, ou digite comandos. tente 'help'."
+    "nfRole": "Desenvolvedor Web · Especialista em Front-End",
+    "nfWork": "Desenvolvedor Full Stack (Pleno) @ Brivia",
+    "nfLocation": "Brasil · remoto · UTC-3",
+    "nfStatus": "aberto a oportunidades",
+    "ask": "Para onde agora?",
+    "askHint": "(clique numa opção ou digite o comando)"
   },
   "about": {
+    "title": "Sobre mim",
     "p1": "Sou um desenvolvedor web, especializado em front-end, que se importa com os detalhes: arquitetura limpa, interfaces rápidas e código que outras pessoas gostam de manter. Desde 2022 trabalho remotamente do Brasil, entregando produtos com React, Next.js e CMS headless.",
-    "p2": "Agora estou indo mais fundo: arquitetura de software, back-end e engenharia de IA. Acredito que as melhores interfaces da próxima década serão construídas por quem entende o sistema inteiro."
+    "p2": "Agora estou indo mais fundo: arquitetura de software, back-end e engenharia de IA. Acredito que as melhores interfaces da próxima década serão construídas por quem entende o sistema inteiro.",
+    "education": [
+      {
+        "course": "Pós-graduação Lato Sensu (MBA), Computer Software Engineering · FAMEF",
+        "tags": [
+          "Ciclo de vida de software",
+          "Engenharia de requisitos",
+          "Arquitetura de software",
+          "DevOps",
+          "Cloud",
+          "Qualidade de software",
+          "Gestão ágil"
+        ]
+      },
+      {
+        "course": "Curso Superior de Tecnologia (CST), Análise e Desenvolvimento de Sistemas · Universidade Paulista",
+        "tags": [
+          "JavaScript",
+          "React.js",
+          "Node.js",
+          "SQL",
+          "POO"
+        ]
+      }
+    ]
   },
   "stack": {
     "pill": "Minha Stack",
     "subtext": "Tecnologias escolhidas a dedo para aplicações web modernas, escaláveis e performáticas.",
     "categories": {
-      "frontend": { "sub": "UI & Experiência" },
-      "backend": { "sub": "APIs & Serviços" },
-      "cms": { "sub": "Gestão de Conteúdo" },
-      "database": { "sub": "Dados & Armazenamento" },
-      "devops": { "sub": "Workflow & Entrega" },
-      "ai": { "sub": "O futuro da engenharia" }
+      "frontend": {
+        "sub": "UI & Experiência"
+      },
+      "backend": {
+        "sub": "APIs & Serviços"
+      },
+      "cms": {
+        "sub": "Gestão de Conteúdo"
+      },
+      "database": {
+        "sub": "Dados & Armazenamento"
+      },
+      "devops": {
+        "sub": "Workflow & Entrega"
+      },
+      "ai": {
+        "sub": "O futuro da engenharia"
+      }
     }
   },
   "projects": {
     "pill": "Projetos em Destaque",
+    "sub": "Alguns dos sites em que trabalhei.",
+    "hint": "passe o mouse num projeto para carregá-lo ao vivo",
+    "live": "ao vivo",
+    "loading": "carregando",
+    "snapshot": "captura",
     "descriptions": [
       "Site corporativo focado em presença digital e comunicação institucional.",
       "Plataforma de agronegócio focada em engajamento e programas de fidelidade.",
@@ -71,43 +165,62 @@
     ]
   },
   "experience": {
+    "hint": "clique num commit para ver",
+    "ndaErr": "erro: acesso restrito, este commit está sob NDA",
+    "ndaNote": "# os detalhes serão liberados quando o projeto for público",
     "items": [
       {
-        "role": "Desenvolvedor Front-End",
-        "company": "@ Brivia | The Creative Smartech",
-        "period": "Dez 2025 — Atual",
-        "desc": "Tempo integral, remoto. Desenvolvimento e manutenção de produtos web para os clientes da agência."
+        "role": "Desenvolvedor Full Stack (Pleno)",
+        "where": "Tempo integral · Remoto",
+        "desc": []
       },
       {
-        "role": "Desenvolvedor Full Stack Pleno",
-        "company": "@ Polo BPM",
-        "period": "Jun 2025 — Nov 2025",
-        "desc": "Desenvolvimento e manutenção de uma plataforma de Gestão de Pesquisa Clínica, contribuindo principalmente com o front-end em React com Tailwind CSS. Remoto."
+        "role": "Desenvolvedor Front End",
+        "where": "Tempo integral · Remoto",
+        "desc": [
+          "Durante minha experiência como Desenvolvedor Front-end, tive a oportunidade de atuar em projetos para grandes empresas, como Wilson Sons, Magazine Luiza (Magalu) e Azul Viagens, trabalhando em equipes multidisciplinares e contribuindo diretamente para a evolução, manutenção e melhoria de seus produtos digitais.",
+          "Nesse período, atuei no desenvolvimento e evolução de soluções para websites, criação e implementação de landing pages, desenvolvimento de e-mail marketing, manutenção e aprimoramento de componentes existentes, além da implementação de novas funcionalidades e melhorias de interface.",
+          "Também participei ativamente da manutenção e otimização das aplicações, correção de bugs, ajustes de responsividade e garantia da qualidade das entregas, buscando proporcionar uma boa experiência ao usuário e manter os projetos alinhados às necessidades do negócio.",
+          "Além do desenvolvimento, atuei na análise e melhoria de métricas de desempenho e SEO, contribuindo para a otimização dos websites e para a melhoria de sua performance e posicionamento nos mecanismos de busca. Minha atuação envolveu principalmente tecnologias como PHP, JavaScript, HTML, CSS/SCSS e WordPress, além de ferramentas e práticas voltadas ao desenvolvimento de interfaces, criação de e-mail marketing, otimização de performance e SEO."
+        ]
       },
       {
-        "role": "Desenvolvedor Front-End",
-        "company": "@ OKN",
-        "period": "Jan 2024 — Jun 2025",
-        "desc": "Desenvolvimento e manutenção de sistemas web utilizando JavaScript e React. Remoto, tempo integral."
+        "role": "Desenvolvedor Full Stack (Pleno)",
+        "where": "Ribeirão Preto, São Paulo, Brasil · Remoto",
+        "desc": [
+          "Durante meu período na Polo Trial, tive o prazer de atuar no desenvolvimento e manutenção de uma plataforma de Gestão de Pesquisa Clínica, contribuindo principalmente com o front-end em React. Também tive a oportunidade de colaborar no back-end com Node.js (Express), auxiliando na integração entre as duas camadas da aplicação.",
+          "Foi uma experiência enriquecedora, onde pude aprimorar minhas habilidades técnicas e participar ativamente da evolução de um projeto de grande impacto. Fico muito grato por todo o aprendizado e pelas parcerias construídas ao longo dessa jornada curta, mas enriquecedora."
+        ]
+      },
+      {
+        "role": "Desenvolvedor Front-end",
+        "where": "Tempo integral · Remoto",
+        "desc": [
+          "Durante minha trajetória na OKN, atuei no desenvolvimento e manutenção de sistemas web, participando da criação de interfaces e funcionalidades utilizando principalmente React, Next.js, JavaScript e PHP."
+        ]
       },
       {
         "role": "Estagiário",
-        "company": "@ OKN",
-        "period": "Set 2022 — Jan 2024",
-        "desc": "Auxílio na manutenção e desenvolvimento de sistemas web utilizando JavaScript e PHP."
+        "where": "Estágio",
+        "desc": [
+          "Durante o período de estágio na OKN, atuei no desenvolvimento e manutenção de sistemas web, auxiliando na implementação de funcionalidades e interfaces utilizando PHP, WordPress, JavaScript e SASS/SCSS.",
+          "Também trabalhei na manutenção de sites WordPress com Elementor e no desenvolvimento de interfaces a partir de layouts do Figma, adquirindo experiência prática com desenvolvimento front-end, manutenção de sistemas e tecnologias web."
+        ]
       }
     ]
   },
   "contact": {
-    "pill": "Contato",
     "headline": "Vamos construir algo grande juntos.",
     "subtext": "Aberto a freelas, oportunidades full-time e colaborações.",
-    "cta": "Fale Comigo",
+    "ask": "Como prefere falar comigo?",
+    "askHint": "(clique para abrir)",
+    "openProfile": "abrir perfil ↗",
     "emailAriaLabel": "Enviar email para Tiago Estetele",
     "githubAriaLabel": "Ver o perfil de Tiago Estetele no GitHub",
     "linkedinAriaLabel": "Ver o perfil de Tiago Estetele no LinkedIn"
   },
   "notFound": {
-    "description": "Esse diretório não existe, foi movido ou nunca compilou. Vamos voltar para um lugar seguro."
+    "description": "Esse diretório não existe, foi movido ou nunca compilou. Vamos voltar para um lugar seguro.",
+    "backHome": "voltar ao início"
   }
 }

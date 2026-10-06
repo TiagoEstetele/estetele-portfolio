@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 import { ExperienceScreen } from '@/components/screens/ExperienceScreen'
+import { currentMonth } from '@/lib/format-period'
 import { buildPageMetadata } from '@/lib/metadata'
-import type { ExperienceItem, ExperienceTranslations, Locale } from '@/types'
+import type { ExperienceText, ExperienceTranslations, Locale } from '@/types'
 
 type Params = { params: Promise<{ locale: Locale }> }
 
@@ -24,8 +25,11 @@ export default async function ExperiencePage({ params }: Params) {
   const t = await getTranslations({ locale, namespace: 'experience' })
 
   const experienceT: ExperienceTranslations = {
-    items: t.raw('items') as ExperienceItem[],
+    hint: t('hint'),
+    ndaErr: t('ndaErr'),
+    ndaNote: t('ndaNote'),
+    items: t.raw('items') as ExperienceText[],
   }
 
-  return <ExperienceScreen t={experienceT} />
+  return <ExperienceScreen t={experienceT} locale={locale} serverMonth={currentMonth()} />
 }

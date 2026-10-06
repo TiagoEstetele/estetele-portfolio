@@ -118,7 +118,7 @@ export function CustomCursor() {
       window.removeEventListener('mousemove', onMove)
       window.removeEventListener('mouseout', onOut)
       delete document.documentElement.dataset.cursor
-      // Stop the glyph field chasing a cursor that no longer exists.
+      // Stop the graph glow chasing a cursor that no longer exists.
       resetPointer()
       dot.style.opacity = '0'
       ring.style.opacity = '0'

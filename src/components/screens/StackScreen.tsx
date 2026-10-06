@@ -1,45 +1,43 @@
 import { TECH_CATEGORIES } from '@/lib/tech-data'
-import { ScreenEyebrow } from './ScreenEyebrow'
+import { MdTitle } from './shell/MdTitle'
+import { ShellCommand } from './shell/ShellCommand'
+import { reveal } from './shell/reveal'
 import type { StackTranslations } from '@/types'
 
+/** `cat README.md`, then `ls -la ./stack`: one directory per area, its tools as files. */
 export function StackScreen({ t }: { t: StackTranslations }) {
   return (
-    <div>
-      <ScreenEyebrow page="stack" label={t.pill} className="mb-2" />
+    <div className="term-screen">
+      <div className="term-block">
+        <ShellCommand path="~/stack" command="cat README.md" at={0.08} />
+        <div className="term-block" style={reveal(0.55)}>
+          <MdTitle>{t.pill}</MdTitle>
+          <p className="term-copy">{t.subtext}</p>
+        </div>
+      </div>
 
-      <p
-        className="mb-6 max-w-[480px] font-mono text-[12px]"
-        style={{ color: 'var(--term-text-faint)', lineHeight: 1.7 }}
-      >
-        {t.subtext}
-      </p>
-
-      <div
-        className="grid gap-3"
-        style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))' }}
-      >
-        {TECH_CATEGORIES.map((category) => (
-          <div key={category.id} className="term-card">
-            <div className="term-card-head">
-              <span
-                className="font-mono text-[12px] font-medium"
-                style={{ color: 'var(--term-text-dim)' }}
-              >
-                {category.dir}
+      <div className="term-block">
+        <ShellCommand path="~/stack" command="ls -la ./stack" at={0.8} showAt={0.72} />
+        <div className="term-ls" style={reveal(1.3)}>
+          <div className="term-ls-total">total {TECH_CATEGORIES.length}</div>
+          {TECH_CATEGORIES.map((category) => (
+            <div key={category.id} className="term-ls-row">
+              <span className="term-ls-meta">
+                <span className="term-ls-perm">drwxr-xr-x</span>
+                <span className="term-ls-count">{category.tags.length}</span>
+                <span className="term-ls-dir">{category.dir}</span>
               </span>
-              <span className="font-mono text-[9px]" style={{ color: 'var(--term-text-trace)' }}>
-                {t.categories[category.id].sub}
+              <span className="term-ls-files">
+                {category.tags.map((tag) => (
+                  <span key={tag} className="term-ls-file">
+                    {tag}
+                  </span>
+                ))}
+                <span className="term-ls-note"># {t.categories[category.id].sub}</span>
               </span>
             </div>
-            <div className="flex flex-wrap gap-1.5 px-3.5 py-3">
-              {category.tags.map((tag) => (
-                <span key={tag} className="term-chip">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   )

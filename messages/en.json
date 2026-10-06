@@ -29,11 +29,58 @@
   "terminal": {
     "navLabel": "Site sections",
     "footerHint": "type 'help' for commands",
-    "help": "commands: cd <page> · ls · whoami · lang en|pt · clear\npages: {pages}",
+    "help": "commands: cd <page> · ls · pwd · history · echo · man · whoami · lang en|br · clear\npages: {pages}",
     "whoami": "Tiago Estetele · web developer · front-end specialist",
     "sudo": "nice try. 😏 permission denied.",
-    "langUsage": "usage: lang en|pt",
-    "commandNotFound": "zsh: command not found: {cmd}. type 'help'"
+    "langUsage": "usage: lang en|br",
+    "commandNotFound": "zsh: command not found: {cmd}. type 'help'",
+    "historyEmpty": "no history yet"
+  },
+  "help": {
+    "label": "Help",
+    "close": "Close help",
+    "navTitle": "NAVIGATION",
+    "navBody": "Use the tabs at the top of the window to jump between pages, or navigate like a real terminal: click anywhere and type commands. Press Enter to run them.",
+    "cmdTitle": "COMMANDS",
+    "commands": [
+      {
+        "cmd": "cd <page>",
+        "desc": "go to a page, e.g. cd stack"
+      },
+      {
+        "cmd": "ls",
+        "desc": "list all available pages"
+      },
+      {
+        "cmd": "pwd",
+        "desc": "print the current directory"
+      },
+      {
+        "cmd": "history",
+        "desc": "show past commands (↑/↓ also cycles)"
+      },
+      {
+        "cmd": "echo <text>",
+        "desc": "print the given text back"
+      },
+      {
+        "cmd": "man",
+        "desc": "opens this help panel"
+      },
+      {
+        "cmd": "whoami",
+        "desc": "who Tiago is"
+      },
+      {
+        "cmd": "lang en|br",
+        "desc": "switch language"
+      },
+      {
+        "cmd": "clear",
+        "desc": "clear the terminal output"
+      }
+    ],
+    "tip": "tip: 'cd' into a path that doesn't exist and see what happens."
   },
   "home": {
     "role": "web developer · front-end specialist · brazil",
@@ -42,26 +89,73 @@
     "heroSub": "Web developer specialized in front-end, with hands-on full stack experience and ambitious about where AI is taking software engineering.",
     "ctaContact": "Get in Touch",
     "ctaStack": "Explore My Stack",
-    "hint": "tip: navigate with the tabs above, or type commands. try 'help'."
+    "nfRole": "Web Developer · Front-End Specialist",
+    "nfWork": "Full Stack Developer (Mid-level) @ Brivia",
+    "nfLocation": "Brazil · remote · UTC-3",
+    "nfStatus": "open to opportunities",
+    "ask": "Where to next?",
+    "askHint": "(click an option or type the command)"
   },
   "about": {
+    "title": "About me",
     "p1": "I'm a web developer, specialized in front-end, who cares about the details: clean architecture, fast interfaces, and code that other people enjoy maintaining. Since 2022 I've been working remotely from Brazil, shipping products with React, Next.js and headless CMS stacks.",
-    "p2": "Right now I'm going deeper: software architecture, back-end development, and AI engineering. I believe the best interfaces of the next decade will be built by people who understand the whole system."
+    "p2": "Right now I'm going deeper: software architecture, back-end development, and AI engineering. I believe the best interfaces of the next decade will be built by people who understand the whole system.",
+    "education": [
+      {
+        "course": "Lato Sensu Postgraduate (MBA), Computer Software Engineering · FAMEF",
+        "tags": [
+          "Software Lifecycle",
+          "Requirements Engineering",
+          "Software Architecture",
+          "DevOps",
+          "Cloud",
+          "Software Quality",
+          "Agile Management"
+        ]
+      },
+      {
+        "course": "Associate Degree (CST), Systems Analysis and Development · Universidade Paulista",
+        "tags": [
+          "JavaScript",
+          "React.js",
+          "Node.js",
+          "SQL",
+          "OOP"
+        ]
+      }
+    ]
   },
   "stack": {
     "pill": "My Stack",
     "subtext": "Carefully chosen technologies for modern, scalable, and performant web applications.",
     "categories": {
-      "frontend": { "sub": "UI & Experience" },
-      "backend": { "sub": "APIs & Services" },
-      "cms": { "sub": "Content Management" },
-      "database": { "sub": "Data & Storage" },
-      "devops": { "sub": "Workflow & Delivery" },
-      "ai": { "sub": "The future of engineering" }
+      "frontend": {
+        "sub": "UI & Experience"
+      },
+      "backend": {
+        "sub": "APIs & Services"
+      },
+      "cms": {
+        "sub": "Content Management"
+      },
+      "database": {
+        "sub": "Data & Storage"
+      },
+      "devops": {
+        "sub": "Workflow & Delivery"
+      },
+      "ai": {
+        "sub": "The future of engineering"
+      }
     }
   },
   "projects": {
     "pill": "Featured Projects",
+    "sub": "A few of the websites I've worked on.",
+    "hint": "hover a project to load it live",
+    "live": "live",
+    "loading": "loading",
+    "snapshot": "snapshot",
     "descriptions": [
       "Corporate website focused on digital presence and institutional communication.",
       "Agribusiness platform focused on customer engagement and loyalty programs.",
@@ -71,43 +165,62 @@
     ]
   },
   "experience": {
+    "hint": "click a commit to inspect",
+    "ndaErr": "error: insufficient clearance, this commit is under NDA",
+    "ndaNote": "# details get declassified once it ships",
     "items": [
       {
+        "role": "Full Stack Developer (Mid-level)",
+        "where": "Full-time · Remote",
+        "desc": []
+      },
+      {
         "role": "Front-End Developer",
-        "company": "@ Brivia | The Creative Smartech",
-        "period": "Dec 2025 — Present",
-        "desc": "Full-time, remote. Building and maintaining web products for the agency's clients."
+        "where": "Full-time · Remote",
+        "desc": [
+          "As a Front-End Developer, I worked on projects for major companies such as Wilson Sons, Magazine Luiza (Magalu) and Azul Viagens, collaborating in multidisciplinary teams and contributing directly to the evolution, maintenance and improvement of their digital products.",
+          "During this period I developed and evolved website solutions, built and shipped landing pages, developed e-mail marketing, maintained and improved existing components, and implemented new features and interface improvements.",
+          "I also took an active part in maintaining and optimizing the applications, fixing bugs, adjusting responsiveness and ensuring delivery quality, aiming for a great user experience and keeping projects aligned with business needs.",
+          "Beyond development, I analyzed and improved performance and SEO metrics, helping optimize the websites and their search-engine ranking. My work mainly involved PHP, JavaScript, HTML, CSS/SCSS and WordPress, plus tools and practices for interface development, e-mail marketing, performance optimization and SEO."
+        ]
       },
       {
         "role": "Full Stack Developer (Mid-level)",
-        "company": "@ Polo BPM",
-        "period": "Jun 2025 — Nov 2025",
-        "desc": "Development and maintenance of a Clinical Research Management platform, contributing mainly to the front-end in React with Tailwind CSS. Remote."
+        "where": "Ribeirão Preto, São Paulo, Brazil · Remote",
+        "desc": [
+          "During my time at Polo Trial, I had the pleasure of developing and maintaining a Clinical Research Management platform, contributing mainly to the React front-end. I also collaborated on the Node.js (Express) back-end, helping integrate both layers of the application.",
+          "It was an enriching experience where I sharpened my technical skills and actively took part in the evolution of a high-impact project. I'm grateful for everything I learned and for the partnerships built along this short but rewarding journey."
+        ]
       },
       {
         "role": "Front-End Developer",
-        "company": "@ OKN",
-        "period": "Jan 2024 — Jun 2025",
-        "desc": "Development and maintenance of web systems using JavaScript and React. Remote, full-time."
+        "where": "Full-time · Remote",
+        "desc": [
+          "Throughout my time at OKN, I developed and maintained web systems, building interfaces and features mainly with React, Next.js, JavaScript and PHP."
+        ]
       },
       {
         "role": "Intern",
-        "company": "@ OKN",
-        "period": "Sep 2022 — Jan 2024",
-        "desc": "Support in the maintenance and development of web systems using JavaScript and PHP."
+        "where": "Internship",
+        "desc": [
+          "During my internship at OKN, I worked on developing and maintaining web systems, helping implement features and interfaces with PHP, WordPress, JavaScript and SASS/SCSS.",
+          "I also maintained WordPress sites built with Elementor and developed interfaces from Figma layouts, gaining hands-on experience in front-end development, systems maintenance and web technologies."
+        ]
       }
     ]
   },
   "contact": {
-    "pill": "Contact",
     "headline": "Let's build something great together.",
     "subtext": "Open to freelance, full-time, and collaboration opportunities.",
-    "cta": "Get in Touch",
+    "ask": "How would you like to reach me?",
+    "askHint": "(click to open)",
+    "openProfile": "open profile ↗",
     "emailAriaLabel": "Send email to Tiago Estetele",
     "githubAriaLabel": "View Tiago Estetele's GitHub profile",
     "linkedinAriaLabel": "View Tiago Estetele's LinkedIn profile"
   },
   "notFound": {
-    "description": "This directory doesn't exist, was moved, or never compiled. Let's get you back to safety."
+    "description": "This directory doesn't exist, was moved, or never compiled. Let's get you back to safety.",
+    "backHome": "back to the start"
   }
 }

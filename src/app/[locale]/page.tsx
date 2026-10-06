@@ -25,13 +25,17 @@ export default async function HomePage({ params }: Params) {
   const t = await getTranslations({ locale, namespace: 'home' })
 
   const homeT: HomeTranslations = {
-    role: t('role'),
     headline1: t('headline1'),
     headlineAI: t('headlineAI'),
     heroSub: t('heroSub'),
     ctaContact: t('ctaContact'),
     ctaStack: t('ctaStack'),
-    hint: t('hint'),
+    nfRole: t('nfRole'),
+    nfWork: t('nfWork'),
+    nfLocation: t('nfLocation'),
+    nfStatus: t('nfStatus'),
+    ask: t('ask'),
+    askHint: t('askHint'),
   }
 
   return <HomeScreen t={homeT} />

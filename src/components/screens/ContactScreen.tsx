@@ -1,68 +1,53 @@
 import { CONTACT } from '@/lib/site'
-import { SCREEN_META } from '@/lib/pages'
+import { Ask } from './shell/Ask'
+import { MdTitle } from './shell/MdTitle'
+import { SelectMenu } from './shell/SelectMenu'
+import { ShellCommand } from './shell/ShellCommand'
+import { reveal } from './shell/reveal'
 import type { ContactTranslations } from '@/types'
 
+/** `cat README.md`, then `./contact.sh` asking which channel to open. */
 export function ContactScreen({ t }: { t: ContactTranslations }) {
   return (
-    <div className="py-6 text-center">
-      <div
-        className="font-mono text-[12px]"
-        style={{ color: 'var(--color-accent)', letterSpacing: '0.08em' }}
-      >
-        {SCREEN_META.contact.index} / {t.pill}
+    <div className="term-screen">
+      <div className="term-block">
+        <ShellCommand path="~/contact" command="cat README.md" at={0.08} />
+        <div className="term-block" style={reveal(0.55)}>
+          <MdTitle>{t.headline}</MdTitle>
+          <p className="term-copy">{t.subtext}</p>
+        </div>
       </div>
 
-      <h1
-        className="mx-auto mt-[18px] max-w-[540px] font-semibold"
-        style={{
-          fontSize: 'clamp(28px, 4.5vw, 44px)',
-          letterSpacing: '-0.03em',
-          textWrap: 'balance',
-        }}
-      >
-        {t.headline}
-      </h1>
-
-      <p
-        className="mx-auto mt-3.5 max-w-[400px] text-[15px]"
-        style={{ color: 'var(--term-text-soft)', lineHeight: 1.6 }}
-      >
-        {t.subtext}
-      </p>
-
-      <div className="mt-[30px] flex justify-center">
-        <a
-          href={CONTACT.emailHref}
-          className="term-btn term-btn--primary"
-          style={{ padding: '13px 26px' }}
-          aria-label={t.emailAriaLabel}
-        >
-          {t.cta} →
-        </a>
-      </div>
-
-      <div className="mt-[30px] flex flex-wrap justify-center gap-6">
-        <a href={CONTACT.emailHref} className="term-contact-link" aria-label={t.emailAriaLabel}>
-          {CONTACT.email}
-        </a>
-        <a
-          href={CONTACT.githubHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="term-contact-link"
-          aria-label={t.githubAriaLabel}
-        >
-          github
-        </a>
-        <a
-          href={CONTACT.linkedinHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="term-contact-link"
-          aria-label={t.linkedinAriaLabel}
-        >
-          linkedin
-        </a>
+      <div className="term-block">
+        <ShellCommand path="~/contact" command="./contact.sh" at={0.8} showAt={0.72} />
+        <div className="term-block" style={{ gap: 10, ...reveal(1.24) }}>
+          <Ask question={t.ask} hint={t.askHint} />
+          <SelectMenu
+            keyWidth="10ch"
+            items={[
+              {
+                href: CONTACT.emailHref,
+                label: 'email',
+                sub: CONTACT.email,
+                ariaLabel: t.emailAriaLabel,
+              },
+              {
+                href: CONTACT.githubHref,
+                external: true,
+                label: 'github',
+                sub: t.openProfile,
+                ariaLabel: t.githubAriaLabel,
+              },
+              {
+                href: CONTACT.linkedinHref,
+                external: true,
+                label: 'linkedin',
+                sub: t.openProfile,
+                ariaLabel: t.linkedinAriaLabel,
+              },
+            ]}
+          />
+        </div>
       </div>
     </div>
   )
