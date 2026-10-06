@@ -1,64 +1,70 @@
-import { TerminalLink } from '@/components/terminal/TerminalLink'
+import { MONOGRAM } from './shell/art'
+import { Ask } from './shell/Ask'
+import { BlockArt } from './shell/BlockArt'
+import { MdTitle } from './shell/MdTitle'
+import { SelectMenu } from './shell/SelectMenu'
+import { ShellCommand } from './shell/ShellCommand'
+import { reveal } from './shell/reveal'
 import type { HomeTranslations } from '@/types'
 
-/** The shell reports the host as reachable — a terminal affectation, not a translation. */
-const STATUS = 'online'
-const INITIALS = 'TE'
+/** Same everywhere, so not a translation. */
+const STACK = 'React · Next.js · TypeScript · Node.js'
 
+/** The landing session: `neofetch`, `cat intro.md`, then a prompt asking where to go. */
 export function HomeScreen({ t }: { t: HomeTranslations }) {
   return (
-    <div>
-      <div className="term-in term-in--home mb-7 flex items-center gap-3.5">
-        <div className="term-avatar" aria-hidden="true">
-          {INITIALS}
-        </div>
-        <div>
-          <div className="flex flex-wrap items-center gap-2.5">
-            <span className="text-[17px] font-semibold">Tiago Estetele</span>
-            <span className="term-badge">{STATUS}</span>
-          </div>
-          <div
-            className="mt-[3px] font-mono text-[11px]"
-            style={{ color: 'var(--term-text-faint)' }}
-          >
-            {t.role}
+    <div className="term-screen">
+      <div className="term-block">
+        <ShellCommand path="~/home" command="neofetch" at={0.1} />
+        <div className="term-neofetch" style={reveal(0.42)}>
+          <BlockArt lines={MONOGRAM} />
+          <div className="term-neofetch-info">
+            <div className="term-neofetch-host">
+              <b>tiago</b>@<b>estetele</b>
+            </div>
+            <div className="term-neofetch-rule" aria-hidden="true">
+              --------------
+            </div>
+            <dl className="term-neofetch-grid">
+              <dt>role</dt>
+              <dd>{t.nfRole}</dd>
+              <dt>work</dt>
+              <dd>{t.nfWork}</dd>
+              <dt>stack</dt>
+              <dd>{STACK}</dd>
+              <dt>location</dt>
+              <dd>{t.nfLocation}</dd>
+              <dt>status</dt>
+              <dd className="term-neofetch-status">
+                <span className="term-pulse" aria-hidden="true" />
+                {t.nfStatus}
+              </dd>
+            </dl>
           </div>
         </div>
       </div>
 
-      <h1
-        className="term-in term-in--home term-in-1 max-w-[760px] font-semibold"
-        style={{
-          fontSize: 'clamp(32px, 5.4vw, 56px)',
-          letterSpacing: '-0.03em',
-          lineHeight: 1.08,
-          textWrap: 'balance',
-        }}
-      >
-        {t.headline1} <span style={{ color: 'var(--color-accent)' }}>{t.headlineAI}</span>.
-      </h1>
-
-      <p
-        className="term-in term-in--home term-in-2 mt-[22px] max-w-[560px] text-[17px]"
-        style={{ lineHeight: 1.65, color: 'var(--term-text-muted)' }}
-      >
-        {t.heroSub}
-      </p>
-
-      <div className="term-in term-in--home term-in-3 mt-8 flex flex-wrap items-center gap-3">
-        <TerminalLink page="contact" className="term-btn term-btn--primary">
-          {t.ctaContact}
-        </TerminalLink>
-        <TerminalLink page="stack" className="term-btn term-btn--ghost">
-          {t.ctaStack} →
-        </TerminalLink>
+      <div className="term-block">
+        <ShellCommand path="~/home" command="cat intro.md" at={0.7} duration={0.34} showAt={0.62} />
+        <div className="term-block" style={reveal(1.1)}>
+          <MdTitle>
+            {t.headline1} <mark className="term-mark">{t.headlineAI}</mark>.
+          </MdTitle>
+          <p className="term-copy" style={{ maxWidth: '80ch' }}>
+            {t.heroSub}
+          </p>
+        </div>
       </div>
 
-      <div
-        className="term-in term-in--home term-in-5 mt-9 font-mono text-[11px]"
-        style={{ color: 'var(--term-text-trace)', lineHeight: 1.9 }}
-      >
-        {t.hint}
+      <div className="term-block" style={{ gap: 10, ...reveal(1.28) }}>
+        <Ask question={t.ask} hint={t.askHint} />
+        <SelectMenu
+          keyWidth="14ch"
+          items={[
+            { page: 'contact', label: 'cd ~/contact', sub: t.ctaContact },
+            { page: 'stack', label: 'cd ~/stack', sub: t.ctaStack },
+          ]}
+        />
       </div>
     </div>
   )

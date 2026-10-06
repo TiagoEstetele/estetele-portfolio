@@ -114,7 +114,7 @@ export default async function Image({ params }: { params: Promise<{ locale: Loca
           <div
             style={{ fontFamily: MONO, fontSize: 15, color: '#565650', letterSpacing: '0.04em' }}
           >
-            {`${SHELL_USER}:~/home — zsh`}
+            {`${SHELL_USER}:~/home · zsh`}
           </div>
           <div style={{ fontFamily: MONO, fontSize: 15, color: '#3a3a36' }}>{host}</div>
         </div>

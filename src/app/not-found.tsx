@@ -1,11 +1,15 @@
 import { getLocale, getTranslations } from 'next-intl/server'
+import { ART_404 } from '@/components/screens/shell/art'
+import { BlockArt } from '@/components/screens/shell/BlockArt'
+import { ShellCommand } from '@/components/screens/shell/ShellCommand'
+import { reveal } from '@/components/screens/shell/reveal'
 import { CustomCursor } from '@/components/ui/CustomCursor'
+import { GitGraphBackground } from '@/components/ui/GitGraphBackground'
 import { LiveClock } from '@/components/ui/LiveClock'
-import { MatrixBackground } from '@/components/ui/MatrixBackground'
 import { SHELL_USER } from '@/lib/site'
 
 /**
- * Last-resort 404, for URLs the locale middleware never sees — its matcher skips any
+ * Last-resort 404, for URLs the locale middleware never sees: its matcher skips any
  * path containing a dot (`/robots.txt.bak`, `/x.php`). Everything else is caught by
  * `[locale]/[...rest]/page.tsx` and rendered inside the live terminal shell.
  *
@@ -18,12 +22,12 @@ export default async function NotFound() {
   const locale = await getLocale()
   const t = await getTranslations({ locale, namespace: 'notFound' })
 
-  // `localePrefix: 'as-needed'` — the default locale is served unprefixed.
+  // `localePrefix: 'as-needed'`: the default locale is served unprefixed.
   const home = locale === 'pt' ? '/pt' : '/'
 
   return (
     <>
-      <MatrixBackground />
+      <GitGraphBackground />
       <div
         aria-hidden="true"
         className="pointer-events-none fixed inset-0 z-0"
@@ -42,46 +46,37 @@ export default async function NotFound() {
               <span className="term-dot" />
               <span className="term-dot term-dot--live" />
             </div>
-            <span className="term-title">{`${SHELL_USER}:~ — zsh`}</span>
-            <span className="term-clock">
+            <span className="term-title">{`${SHELL_USER}:~ · zsh`}</span>
+            <span className="term-clock tnum">
               <LiveClock />
             </span>
           </div>
 
-          <div style={{ padding: 'clamp(24px, 5vw, 44px)' }}>
-            <div
-              className="font-mono text-[13px]"
-              style={{ color: 'var(--term-text-faint)', lineHeight: 2 }}
-            >
-              <div style={{ color: 'var(--color-danger)' }}>{SHELL_ERROR}</div>
-              <div>
-                <span style={{ color: 'var(--term-text-ghost)' }}>$</span> echo $?
-              </div>
-              <div style={{ color: 'var(--color-accent)' }}>404</div>
+          <div className="term-screen" style={{ padding: 'var(--term-pad)' }}>
+            <div className="term-error">{SHELL_ERROR}</div>
+
+            <div className="term-block">
+              <ShellCommand path="~" command="echo $?" at={0.23} showAt={0.15} />
+              <BlockArt
+                lines={ART_404}
+                label="404"
+                style={{ alignSelf: 'flex-start', ...reveal(0.52) }}
+              />
             </div>
 
-            <h1
-              className="mt-7 font-semibold"
-              style={{
-                fontSize: 'clamp(64px, 12vw, 110px)',
-                letterSpacing: '-0.04em',
-                lineHeight: 1,
-              }}
-            >
-              404<span style={{ color: 'var(--color-accent)' }}>.</span>
-            </h1>
-
-            <p
-              className="mt-4 max-w-[400px] text-[16px]"
-              style={{ lineHeight: 1.65, color: 'var(--term-text-soft)' }}
-            >
-              {t('description')}
-            </p>
-
-            <div className="mt-7">
-              <a href={home} className="term-btn term-btn--primary">
-                cd ~/home
-              </a>
+            <div className="term-block" style={{ gap: 14, ...reveal(0.72) }}>
+              <p className="term-copy" style={{ maxWidth: '60ch' }}>
+                {t('description')}
+              </p>
+              <div className="term-menu">
+                <a href={home} className="term-menu-row" data-selected>
+                  <span className="term-menu-ptr" aria-hidden="true">
+                    &gt;
+                  </span>
+                  <span>cd ~/home</span>
+                  <span className="term-menu-sub">{t('backHome')}</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>

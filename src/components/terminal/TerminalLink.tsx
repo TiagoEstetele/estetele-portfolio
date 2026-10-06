@@ -1,16 +1,13 @@
 'use client'
 
-import type { ReactNode } from 'react'
+import type { ComponentProps } from 'react'
 import { Link } from '@/i18n/routing'
 import { hrefFor } from '@/lib/pages'
 import { useTerminalNav } from './terminal-nav'
 import type { PageId } from '@/types'
 
-interface TerminalLinkProps {
+type TerminalLinkProps = Omit<ComponentProps<typeof Link>, 'href' | 'prefetch' | 'onNavigate'> & {
   page: PageId
-  className?: string
-  'aria-current'?: 'page'
-  children: ReactNode
 }
 
 /**

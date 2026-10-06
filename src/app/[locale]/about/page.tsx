@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 import { AboutScreen } from '@/components/screens/AboutScreen'
 import { buildPageMetadata } from '@/lib/metadata'
-import type { AboutTranslations, EducationDetail, Locale } from '@/types'
+import type { AboutTranslations, EducationText, Locale } from '@/types'
 
 type Params = { params: Promise<{ locale: Locale }> }
 
@@ -24,10 +24,10 @@ export default async function AboutPage({ params }: Params) {
   const t = await getTranslations({ locale, namespace: 'about' })
 
   const aboutT: AboutTranslations = {
+    title: t('title'),
     p1: t('p1'),
     p2: t('p2'),
-    eduTitle: t('eduTitle'),
-    education: t.raw('education') as EducationDetail[],
+    education: t.raw('education') as EducationText[],
   }
 
   return <AboutScreen t={aboutT} />

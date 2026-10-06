@@ -1,18 +1,8 @@
-import type { EducationEntry } from '@/types'
-
 /**
- * Language-neutral academic entries. Course, period, and tags are localized in
- * messages under `about.education` (same order as this array).
+ * Language-neutral half of the `tree ./education` listing on the about screen. Course
+ * names and topics are localized in messages under `about.education` (same order).
  */
-export const EDUCATION: EducationEntry[] = [
-  {
-    mark: 'UNIP',
-    color: '#1c3f8f',
-    school: 'Universidade Paulista',
-  },
-  {
-    mark: 'FMF',
-    color: '#c62828',
-    school: 'FAMEF',
-  },
-]
+export const EDUCATION = [
+  { dir: 'famef/', period: '2025-02 → 2025-08' },
+  { dir: 'unip/', period: '2022-02 → 2024-01' },
+] as const

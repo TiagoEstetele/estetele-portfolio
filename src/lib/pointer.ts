@@ -1,10 +1,10 @@
 /**
- * Shared pointer state, written by `CustomCursor` and read by `MatrixBackground`.
+ * Shared pointer state, written by `CustomCursor` and read by `GitGraphBackground`.
  *
- * The two are separate components but describe one cursor: the glyph field lights up
+ * The two are separate components but describe one cursor: the git graph lights up
  * around the *ring's* trailing position (`rx`/`ry`), not the raw pointer, so the glow
  * lags behind the dot exactly as the ring does. A module singleton keeps them in step
- * without threading state through React on every frame — this changes 60x a second and
+ * without threading state through React on every frame: this changes 60x a second and
  * has no business triggering renders.
  *
  * `seen` stays false until the first real mousemove, which is what keeps the glow off
@@ -17,7 +17,7 @@ export interface PointerState {
   /** Dot position: tight lerp toward the raw position. */
   sx: number
   sy: number
-  /** Ring position: slow lerp. Doubles as the centre of the glyph glow. */
+  /** Ring position: slow lerp. Doubles as the centre of the graph glow. */
   rx: number
   ry: number
   /** Has the pointer ever moved over the document? */

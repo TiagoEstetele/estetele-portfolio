@@ -7,8 +7,8 @@ import type { NotFoundTranslations } from '@/types'
  *
  * `not-found.tsx` is only reached via an explicit `notFound()` call, which the sibling
  * `[...rest]/page.tsx` makes for every unmatched path. That indirection is what puts
- * the 404 *inside* `[locale]/layout.tsx` — and therefore inside the shell, with its
- * tabs, prompt, and status bar intact — instead of on a bare page.
+ * the 404 *inside* `[locale]/layout.tsx`, and therefore inside the shell with its
+ * tabs, prompt, and status bar intact, instead of on a bare page.
  *
  * `not-found.tsx` cannot export `metadata`, so the title falls back to the locale
  * layout's default. Next.js injects `noindex` on 404 responses automatically.
@@ -19,6 +19,7 @@ export default async function LocaleNotFound() {
 
   const notFoundT: NotFoundTranslations = {
     description: t('description'),
+    backHome: t('backHome'),
   }
 
   return <NotFoundScreen t={notFoundT} />

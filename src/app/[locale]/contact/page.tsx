@@ -24,10 +24,11 @@ export default async function ContactPage({ params }: Params) {
   const t = await getTranslations({ locale, namespace: 'contact' })
 
   const contactT: ContactTranslations = {
-    pill: t('pill'),
     headline: t('headline'),
     subtext: t('subtext'),
-    cta: t('cta'),
+    ask: t('ask'),
+    askHint: t('askHint'),
+    openProfile: t('openProfile'),
     emailAriaLabel: t('emailAriaLabel'),
     githubAriaLabel: t('githubAriaLabel'),
     linkedinAriaLabel: t('linkedinAriaLabel'),

@@ -7,12 +7,12 @@ import { Analytics } from '@vercel/analytics/react'
 import { routing } from '@/i18n/routing'
 import { HtmlLangSync } from '@/components/common/HtmlLangSync'
 import { CustomCursor } from '@/components/ui/CustomCursor'
-import { MatrixBackground } from '@/components/ui/MatrixBackground'
+import { GitGraphBackground } from '@/components/ui/GitGraphBackground'
 import { TerminalShell } from '@/components/terminal/TerminalShell'
 import { buildJsonLdGraph } from '@/lib/seo'
 import { PAGES } from '@/lib/pages'
 import { SITE_URL } from '@/lib/site'
-import type { HelpMenuTranslations, TerminalTranslations } from '@/types'
+import type { HelpCommand, TerminalTranslations } from '@/types'
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
@@ -20,7 +20,7 @@ export function generateStaticParams() {
 
 /**
  * Only the parts every screen shares. Canonical URLs, hreflang, Open Graph, and
- * Twitter cards are per-route and live in each `page.tsx` (see `buildPageMetadata`) —
+ * Twitter cards are per-route and live in each `page.tsx` (see `buildPageMetadata`).
  * Next.js merges metadata shallowly, so a nested `openGraph` would replace, not extend.
  */
 export async function generateMetadata({
@@ -62,6 +62,7 @@ export default async function LocaleLayout({
   if (!hasLocale(routing.locales, locale)) notFound()
 
   const t = await getTranslations({ locale, namespace: 'terminal' })
+  const help = await getTranslations({ locale, namespace: 'help' })
 
   const terminalT: TerminalTranslations = {
     navLabel: t('navLabel'),
@@ -76,15 +77,23 @@ export default async function LocaleLayout({
     // Raw too, so the `{cmd}` placeholder survives to the client and can be filled in
     // against whatever the visitor actually typed.
     commandNotFound: t.raw('commandNotFound') as string,
-    // Raw: `commands` is a list of objects, and `cd <page>` carries angle brackets
-    // that ICU would misread as an unclosed rich-text tag (same reason as `help`).
-    helpMenu: t.raw('helpMenu') as HelpMenuTranslations,
+    historyEmpty: t('historyEmpty'),
+    helpPanel: {
+      label: help('label'),
+      close: help('close'),
+      navTitle: help('navTitle'),
+      navBody: help('navBody'),
+      cmdTitle: help('cmdTitle'),
+      // Raw for the same reason as `help` above: `cd <page>` is not a rich-text tag.
+      commands: help.raw('commands') as HelpCommand[],
+      tip: help('tip'),
+    },
   }
 
   return (
     <>
       {/*
-       * JSON-LD structured data — @graph with Person + WebSite + ProfilePage schemas.
+       * JSON-LD structured data: @graph with Person + WebSite + ProfilePage schemas.
        * Google accepts JSON-LD in <body>. dangerouslySetInnerHTML is safe here because
        * the content is fully controlled (no user input).
        */}
@@ -97,7 +106,7 @@ export default async function LocaleLayout({
       <HtmlLangSync locale={locale} />
 
       {/* Ambient atmosphere, fixed behind the window */}
-      <MatrixBackground />
+      <GitGraphBackground />
       <div
         aria-hidden="true"
         className="pointer-events-none fixed inset-0 z-0"
@@ -110,7 +119,7 @@ export default async function LocaleLayout({
 
       {/*
        * next-intl's client-side `Link`, `usePathname`, and `useRouter` read the active
-       * locale from this context — without it they throw. Messages are passed explicitly
+       * locale from this context; without it they throw. Messages are passed explicitly
        * as `{}` because omitting them makes the provider serialize *every* message into
        * the RSC payload; the shell's handful of strings arrive as plain props instead.
        */}

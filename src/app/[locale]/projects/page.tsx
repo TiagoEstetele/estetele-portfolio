@@ -25,6 +25,11 @@ export default async function ProjectsPage({ params }: Params) {
 
   const projectsT: ProjectsTranslations = {
     pill: t('pill'),
+    sub: t('sub'),
+    hint: t('hint'),
+    live: t('live'),
+    loading: t('loading'),
+    snapshot: t('snapshot'),
     descriptions: t.raw('descriptions') as string[],
   }
 
