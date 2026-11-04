@@ -1191,6 +1191,16 @@ html[data-cursor='custom'] * {
   transition: opacity 0.25s ease;
 }
 
+/* A project's clip fills the card the way a screenshot does; the card takes its ratio. */
+.term-preview-frame video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.25s ease;
+}
+
 /* Rendered at 4x and scaled down, so the site lays out at desktop width. */
 .term-preview-frame iframe {
   position: absolute;

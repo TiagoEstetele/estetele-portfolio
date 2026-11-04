@@ -35,6 +35,16 @@ export interface Project {
   embeddable: boolean
   /** Capture of the site at 1280x1280 (`public/projects`), shown when the frame can't load. */
   screenshot: string
+  /**
+   * Muted clip (`public/projects`) that loops in the preview in place of `screenshot`,
+   * which becomes its poster. Only for projects that aren't `embeddable`.
+   */
+  video?: string
+  /**
+   * Width / height of the preview card when `screenshot` or `video` isn't the usual
+   * square capture, so it shows whole and unstretched.
+   */
+  previewRatio?: number
 }
 
 /** `[year, month]`, month 1-based, the way a CV writes it. */
@@ -140,6 +150,8 @@ export interface ProjectsTranslations {
   live: string
   loading: string
   snapshot: string
+  /** Status for a project whose preview is a video clip. */
+  video: string
   /** Heading over each group of the list: a label and a `# comment` beside it. */
   groups: Record<ProjectKind, { label: string; note: string }>
   descriptions: readonly string[]

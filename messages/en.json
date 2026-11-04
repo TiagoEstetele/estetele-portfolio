@@ -156,6 +156,7 @@
     "live": "live",
     "loading": "loading",
     "snapshot": "snapshot",
+    "video": "video",
     "groups": {
       "professional": {
         "label": "Professional projects",

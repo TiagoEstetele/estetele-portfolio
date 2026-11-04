@@ -60,6 +60,9 @@ export const PROJECTS: Project[] = [
     kind: 'personal',
     // A Windows tray app, so there is no site to frame, and github.com sends `DENY`.
     embeddable: false,
+    // The explainer from the app's README (1280x720), muted, with its cover as poster.
     screenshot: '/projects/agc.webp',
+    video: '/projects/agc-explainer.mp4',
+    previewRatio: 16 / 9,
   },
 ]

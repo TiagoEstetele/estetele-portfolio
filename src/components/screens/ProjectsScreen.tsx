@@ -51,6 +51,8 @@ export function ProjectsScreen({ t }: { t: ProjectsTranslations }) {
   const debounce = useRef<number | undefined>(undefined)
   // One pending timeout per framed site, cleared the moment that frame loads.
   const timeouts = useRef(new Map<number, number>())
+  // Mounted preview clips, so the effect below can play the selected one.
+  const videos = useRef(new Map<number, HTMLVideoElement>())
 
   const showsSnapshot = (index: number) => !PROJECTS[index].embeddable || timedOut.has(index)
 
@@ -71,6 +73,15 @@ export function ProjectsScreen({ t }: { t: ProjectsTranslations }) {
     }, SELECT_DEBOUNCE_MS)
   }
 
+  // Only the clip on screen plays; one left mounted behind another row's preview pauses.
+  // `visited` is a dependency so a clip starts as soon as it first mounts.
+  useEffect(() => {
+    videos.current.forEach((video, index) => {
+      if (index === selected) video.play().catch(() => {})
+      else video.pause()
+    })
+  }, [selected, visited])
+
   // The first project's preview mounts with the screen, so its timeout starts here too.
   useEffect(() => {
     const pending = timeouts.current
@@ -85,7 +96,15 @@ export function ProjectsScreen({ t }: { t: ProjectsTranslations }) {
 
   const active = PROJECTS[selected]
   const ready = loaded.has(selected)
-  const status = !ready ? t.loading : showsSnapshot(selected) ? t.snapshot : t.live
+  const status = !ready
+    ? t.loading
+    : active.video
+      ? t.video
+      : showsSnapshot(selected)
+        ? t.snapshot
+        : t.live
+  // Non-square captures reshape the card instead of being cropped or stretched to fit it.
+  const frameRatio = showsSnapshot(selected) ? active.previewRatio : undefined
 
   return (
     <div className="term-projects">
@@ -163,6 +182,7 @@ export function ProjectsScreen({ t }: { t: ProjectsTranslations }) {
 
         <a
           className="term-preview-frame"
+          style={frameRatio ? { aspectRatio: frameRatio } : undefined}
           href={active.url}
           target="_blank"
           rel="noopener noreferrer"
@@ -172,6 +192,31 @@ export function ProjectsScreen({ t }: { t: ProjectsTranslations }) {
             PROJECTS.map((project, index) => {
               if (!visited.has(index)) return null
               const style = { opacity: index === selected ? 1 : 0, zIndex: index === selected ? 2 : 1 }
+
+              if (project.video) {
+                return (
+                  <video
+                    key={`${project.url}#video`}
+                    ref={(video) => {
+                      if (!video) return
+                      videos.current.set(index, video)
+                      return () => {
+                        videos.current.delete(index)
+                      }
+                    }}
+                    src={project.video}
+                    poster={project.screenshot}
+                    muted
+                    loop
+                    playsInline
+                    tabIndex={-1}
+                    onLoadedData={() => markLoaded(index)}
+                    // A clip that can't play still has its poster to show.
+                    onError={() => markLoaded(index)}
+                    style={style}
+                  />
+                )
+              }
 
               return showsSnapshot(index) ? (
                 <Image
