@@ -1,5 +1,8 @@
-import { PORTFOLIO_REPO_URL, SITE_URL } from '@/lib/site'
+import { urlFor } from '@/lib/metadata'
+import { hrefFor } from '@/lib/pages'
+import { HTML_LANG, PORTFOLIO_REPO_URL, SITE_URL } from '@/lib/site'
 import { TECH_CATEGORIES } from '@/lib/tech-data'
+import type { Locale, PageId } from '@/types'
 
 interface SchemaOptions {
   locale: string
@@ -88,6 +91,8 @@ export function buildWebSiteSchema() {
     '@type': 'WebSite',
     '@id': `${SITE_URL}/#website`,
     name: 'Tiago Estetele',
+    // The name Google already shows for the site; listing it keeps the two tied together.
+    alternateName: 'estetele.dev',
     url: SITE_URL,
     description:
       'Portfolio of Tiago Estetele, Web Developer specialized in front-end, working with React, Next.js, TypeScript, headless CMS platforms, and AI-driven web engineering.',
@@ -117,41 +122,87 @@ export function buildSoftwareSourceCodeSchema() {
   }
 }
 
-/**
- * https://schema.org/ProfilePage — per-locale page entity
- */
-export function buildProfilePageSchema({ locale }: SchemaOptions) {
-  const isPt = locale === 'pt'
-  const pageUrl = isPt ? `${SITE_URL}/pt` : SITE_URL
+/** schema.org type of each screen's page entity. */
+const PAGE_TYPES: Record<PageId, string> = {
+  home: 'ProfilePage',
+  about: 'AboutPage',
+  stack: 'WebPage',
+  projects: 'CollectionPage',
+  experience: 'WebPage',
+  contact: 'ContactPage',
+}
 
-  return {
-    '@type': 'ProfilePage',
-    '@id': `${pageUrl}/#profilepage`,
-    name: isPt
-      ? 'Tiago Estetele | Desenvolvedor Web Especialista em Front-End'
-      : 'Tiago Estetele | Web Developer & Front-End Specialist',
-    url: pageUrl,
-    description: isPt
-      ? 'Portfolio profissional de Tiago Estetele, Desenvolvedor Web especializado em front-end, atuando com React, Next.js e TypeScript.'
-      : 'Professional portfolio of Tiago Estetele, Web Developer specialized in front-end, working with React, Next.js, and TypeScript.',
-    mainEntity: { '@id': `${SITE_URL}/#person` },
-    inLanguage: isPt ? 'pt-BR' : 'en',
-    dateModified: new Date().toISOString().split('T')[0],
-  }
+interface PageSchemaOptions {
+  locale: Locale
+  page: PageId
+  /** The screen's title as in its metadata: the full site title on home, e.g. "Sobre" elsewhere. */
+  title: string
+  description: string
+  /** Label of the breadcrumb's first step, the home page. */
+  siteName: string
 }
 
 /**
- * Builds a combined @graph payload for embedding as a single JSON-LD script.
- * Using @graph is the recommended approach for multiple interlinked entities.
+ * The page entity for one screen (https://schema.org/WebPage and subtypes), plus, below
+ * home, a https://schema.org/BreadcrumbList placing it under the home page. Together they
+ * spell out the site's structure for search engines, one level deep: every screen is a
+ * direct child of home.
  */
-export function buildJsonLdGraph({ locale }: SchemaOptions): string {
-  return JSON.stringify({
+export function buildPageSchemas({
+  locale,
+  page,
+  title,
+  description,
+  siteName,
+}: PageSchemaOptions) {
+  const url = urlFor(locale, hrefFor(page))
+  const person = { '@id': `${SITE_URL}/#person` }
+
+  const webPage = {
+    '@type': PAGE_TYPES[page],
+    '@id': `${url}#webpage`,
+    url,
+    name: title,
+    description,
+    inLanguage: HTML_LANG[locale],
+    isPartOf: { '@id': `${SITE_URL}/#website` },
+  }
+
+  if (page === 'home') {
+    return [
+      {
+        ...webPage,
+        mainEntity: person,
+        dateModified: new Date().toISOString().split('T')[0],
+      },
+    ]
+  }
+
+  return [
+    { ...webPage, about: person, breadcrumb: { '@id': `${url}#breadcrumb` } },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${url}#breadcrumb`,
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: siteName, item: urlFor(locale, '/') },
+        { '@type': 'ListItem', position: 2, name: title, item: url },
+      ],
+    },
+  ]
+}
+
+/**
+ * The entities every page shares, as one @graph for a single JSON-LD script. Using
+ * @graph is the recommended approach for multiple interlinked entities. Each page adds
+ * its own entities next to it (see `buildPageSchemas`).
+ */
+export function buildSiteJsonLd({ locale }: SchemaOptions) {
+  return {
     '@context': 'https://schema.org',
     '@graph': [
       buildPersonSchema({ locale }),
       buildWebSiteSchema(),
       buildSoftwareSourceCodeSchema(),
-      buildProfilePageSchema({ locale }),
     ],
-  })
+  }
 }

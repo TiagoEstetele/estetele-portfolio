@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
+import { PageJsonLd } from '@/components/common/JsonLd'
 import { StackScreen } from '@/components/screens/StackScreen'
 import { buildPageMetadata } from '@/lib/metadata'
 import type { Locale, StackTranslations } from '@/types'
@@ -36,5 +37,10 @@ export default async function StackPage({ params }: Params) {
     },
   }
 
-  return <StackScreen t={stackT} />
+  return (
+    <>
+      <PageJsonLd locale={locale} page="stack" />
+      <StackScreen t={stackT} />
+    </>
+  )
 }

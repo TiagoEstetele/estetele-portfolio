@@ -9,7 +9,8 @@ import { HtmlLangSync } from '@/components/common/HtmlLangSync'
 import { CustomCursor } from '@/components/ui/CustomCursor'
 import { GitGraphBackground } from '@/components/ui/GitGraphBackground'
 import { TerminalShell } from '@/components/terminal/TerminalShell'
-import { buildJsonLdGraph } from '@/lib/seo'
+import { JsonLd } from '@/components/common/JsonLd'
+import { buildSiteJsonLd } from '@/lib/seo'
 import { PAGES } from '@/lib/pages'
 import { SITE_URL } from '@/lib/site'
 import type { HelpCommand, TerminalTranslations } from '@/types'
@@ -93,14 +94,11 @@ export default async function LocaleLayout({
   return (
     <>
       {/*
-       * JSON-LD structured data: @graph with Person + WebSite + ProfilePage schemas.
-       * Google accepts JSON-LD in <body>. dangerouslySetInnerHTML is safe here because
-       * the content is fully controlled (no user input).
+       * JSON-LD structured data shared by every page: Person, WebSite, and the source
+       * repository. Each page adds its own page entity and breadcrumb (`PageJsonLd`).
+       * Google accepts JSON-LD in <body>.
        */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: buildJsonLdGraph({ locale }) }}
-      />
+      <JsonLd data={buildSiteJsonLd({ locale })} />
 
       {/* Keeps <html lang> correct across client-side locale switches (root layout isn't re-rendered) */}
       <HtmlLangSync locale={locale} />

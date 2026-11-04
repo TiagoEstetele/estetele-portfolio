@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
+import { PageJsonLd } from '@/components/common/JsonLd'
 import { HomeScreen } from '@/components/screens/HomeScreen'
 import { buildPageMetadata } from '@/lib/metadata'
 import type { HomeTranslations, Locale } from '@/types'
@@ -38,5 +39,10 @@ export default async function HomePage({ params }: Params) {
     askHint: t('askHint'),
   }
 
-  return <HomeScreen t={homeT} />
+  return (
+    <>
+      <PageJsonLd locale={locale} page="home" />
+      <HomeScreen t={homeT} />
+    </>
+  )
 }

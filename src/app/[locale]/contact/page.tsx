@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
+import { PageJsonLd } from '@/components/common/JsonLd'
 import { ContactScreen } from '@/components/screens/ContactScreen'
 import { buildPageMetadata } from '@/lib/metadata'
 import type { ContactTranslations, Locale } from '@/types'
@@ -34,5 +35,10 @@ export default async function ContactPage({ params }: Params) {
     linkedinAriaLabel: t('linkedinAriaLabel'),
   }
 
-  return <ContactScreen t={contactT} />
+  return (
+    <>
+      <PageJsonLd locale={locale} page="contact" />
+      <ContactScreen t={contactT} />
+    </>
+  )
 }

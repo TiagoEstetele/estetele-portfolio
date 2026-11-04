@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
+import { PageJsonLd } from '@/components/common/JsonLd'
 import { AboutScreen } from '@/components/screens/AboutScreen'
 import { buildPageMetadata } from '@/lib/metadata'
 import type { AboutTranslations, EducationText, Locale } from '@/types'
@@ -30,5 +31,10 @@ export default async function AboutPage({ params }: Params) {
     education: t.raw('education') as EducationText[],
   }
 
-  return <AboutScreen t={aboutT} />
+  return (
+    <>
+      <PageJsonLd locale={locale} page="about" />
+      <AboutScreen t={aboutT} />
+    </>
+  )
 }

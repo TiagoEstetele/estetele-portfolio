@@ -5,7 +5,7 @@ import { routing } from '@/i18n/routing'
 
 // Use a fixed date so the file doesn't invalidate CDN cache on every build.
 // Update this manually when content changes.
-const LAST_MODIFIED = new Date('2026-07-08')
+const LAST_MODIFIED = new Date('2026-11-04')
 
 /** Home outranks the inner screens; everything else is equal. */
 const priorityFor = (page: (typeof PAGES)[number], isDefaultLocale: boolean) => {

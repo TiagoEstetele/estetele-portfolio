@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
+import { PageJsonLd } from '@/components/common/JsonLd'
 import { ExperienceScreen } from '@/components/screens/ExperienceScreen'
 import { currentMonth } from '@/lib/format-period'
 import { buildPageMetadata } from '@/lib/metadata'
@@ -31,5 +32,10 @@ export default async function ExperiencePage({ params }: Params) {
     items: t.raw('items') as ExperienceText[],
   }
 
-  return <ExperienceScreen t={experienceT} locale={locale} serverMonth={currentMonth()} />
+  return (
+    <>
+      <PageJsonLd locale={locale} page="experience" />
+      <ExperienceScreen t={experienceT} locale={locale} serverMonth={currentMonth()} />
+    </>
+  )
 }
