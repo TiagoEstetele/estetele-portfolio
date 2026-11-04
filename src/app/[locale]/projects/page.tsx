@@ -30,6 +30,7 @@ export default async function ProjectsPage({ params }: Params) {
     live: t('live'),
     loading: t('loading'),
     snapshot: t('snapshot'),
+    groups: t.raw('groups') as ProjectsTranslations['groups'],
     descriptions: t.raw('descriptions') as string[],
   }
 

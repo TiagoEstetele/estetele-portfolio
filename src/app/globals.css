@@ -1047,6 +1047,37 @@ html[data-cursor='custom'] * {
   flex-direction: column;
 }
 
+.term-project-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.term-project-group + .term-project-group {
+  margin-top: 18px;
+}
+
+.term-project-group-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 12px;
+  margin-bottom: 4px;
+  padding: 0 10px 6px;
+  border-bottom: 1px solid var(--term-border-faint);
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.term-project-group-label {
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.term-project-group-note {
+  min-width: 0;
+  color: var(--term-comment);
+}
+
 .term-project-row > .term-menu-ptr,
 .term-project-idx {
   font-size: 13px;
@@ -1188,6 +1219,8 @@ html[data-cursor='custom'] * {
   font-size: 11px;
   line-height: 16px;
   color: var(--term-text-body);
+  /* Repository URLs are one long unbroken word. */
+  overflow-wrap: anywhere;
 }
 
 .term-preview-loading-cmd {

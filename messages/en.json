@@ -14,7 +14,7 @@
       },
       "projects": {
         "title": "Projects",
-        "description": "Selected work by Tiago Estetele: corporate websites, agribusiness platforms, and creative agency sites built with React, Next.js, and WordPress."
+        "description": "Selected work by Tiago Estetele: corporate websites, agribusiness platforms, and creative agency sites built with React, Next.js, and WordPress, plus a personal grammar correction app for Windows."
       },
       "experience": {
         "title": "Experience",
@@ -151,17 +151,28 @@
   },
   "projects": {
     "pill": "Featured Projects",
-    "sub": "A few of the websites I've worked on.",
+    "sub": "Websites I've built professionally, plus a personal project.",
     "hint": "hover a project to load it live",
     "live": "live",
     "loading": "loading",
     "snapshot": "snapshot",
+    "groups": {
+      "professional": {
+        "label": "Professional projects",
+        "note": "websites built for companies and clients"
+      },
+      "personal": {
+        "label": "Personal project",
+        "note": "open source Windows app"
+      }
+    },
     "descriptions": [
       "Corporate website focused on digital presence and institutional communication.",
       "Agribusiness platform focused on customer engagement and loyalty programs.",
       "Creative agency website with modern design and interactive user experience.",
       "Corporate website focused on information security solutions.",
-      "Website blog with articles and questions for students."
+      "Website blog with articles and questions for students.",
+      "Windows tray app that proofreads Brazilian Portuguese as you type, fully offline. C# · .NET 10 · WPF."
     ]
   },
   "experience": {

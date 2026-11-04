@@ -14,7 +14,7 @@
       },
       "projects": {
         "title": "Projetos",
-        "description": "Trabalhos selecionados de Tiago Estetele: sites corporativos, plataformas de agronegócio e sites de agências criativas feitos com React, Next.js e WordPress."
+        "description": "Trabalhos selecionados de Tiago Estetele: sites corporativos, plataformas de agronegócio e sites de agências criativas feitos com React, Next.js e WordPress, além de um app pessoal de correção gramatical para Windows."
       },
       "experience": {
         "title": "Experiência",
@@ -151,17 +151,28 @@
   },
   "projects": {
     "pill": "Projetos em Destaque",
-    "sub": "Alguns dos sites em que trabalhei.",
+    "sub": "Sites que construí profissionalmente e um projeto pessoal.",
     "hint": "passe o mouse num projeto para carregá-lo ao vivo",
     "live": "ao vivo",
     "loading": "carregando",
     "snapshot": "captura",
+    "groups": {
+      "professional": {
+        "label": "Projetos profissionais",
+        "note": "sites feitos para empresas e clientes"
+      },
+      "personal": {
+        "label": "Projeto pessoal",
+        "note": "app open source para Windows"
+      }
+    },
     "descriptions": [
       "Site corporativo focado em presença digital e comunicação institucional.",
       "Plataforma de agronegócio focada em engajamento e programas de fidelidade.",
       "Site de agência criativa com design moderno e experiência interativa.",
       "Site corporativo focado em soluções de segurança da informação.",
-      "Blog com artigos e questões para estudantes."
+      "Blog com artigos e questões para estudantes.",
+      "App de bandeja para Windows que corrige português brasileiro enquanto você digita, 100% offline. C# · .NET 10 · WPF."
     ]
   },
   "experience": {

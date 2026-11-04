@@ -18,11 +18,15 @@ export interface TechCategory {
   tags: readonly string[]
 }
 
+/** Client work vs. something built on my own time; the list groups by this. */
+export type ProjectKind = 'professional' | 'personal'
+
 /** Language-neutral project entry (see src/lib/projects-data.ts). */
 export interface Project {
   name: string
   domain: string
   url: string
+  kind: ProjectKind
   /**
    * Whether the site lets itself be framed. Sites that send `X-Frame-Options` or a CSP
    * `frame-ancestors` refusing us can never load in the live preview, so they get
@@ -136,6 +140,8 @@ export interface ProjectsTranslations {
   live: string
   loading: string
   snapshot: string
+  /** Heading over each group of the list: a label and a `# comment` beside it. */
+  groups: Record<ProjectKind, { label: string; note: string }>
   descriptions: readonly string[]
 }
 

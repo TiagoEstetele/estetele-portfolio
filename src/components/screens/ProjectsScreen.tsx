@@ -6,7 +6,10 @@ import { PROJECTS } from '@/lib/projects-data'
 import { MdTitle } from './shell/MdTitle'
 import { ShellCommand } from './shell/ShellCommand'
 import { reveal } from './shell/reveal'
-import type { ProjectsTranslations } from '@/types'
+import type { ProjectKind, ProjectsTranslations } from '@/types'
+
+/** List sections, top to bottom: client work first, then personal projects. */
+const GROUPS: readonly ProjectKind[] = ['professional', 'personal']
 
 /** Hovering past a row on the way to another shouldn't start loading it. */
 const SELECT_DEBOUNCE_MS = 160
@@ -98,31 +101,51 @@ export function ProjectsScreen({ t }: { t: ProjectsTranslations }) {
         <div className="term-block">
           <ShellCommand path="~/projects" command="ls ./projects --preview" at={0.8} showAt={0.72} />
           <div className="term-project-list" style={reveal(1.57)}>
-            {PROJECTS.map((project, index) => (
-              <a
-                key={project.url}
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="term-project-row"
-                data-selected={index === selected || undefined}
-                onMouseEnter={() => select(index)}
-                onFocus={() => select(index)}
+            {GROUPS.map((kind) => (
+              <div
+                key={kind}
+                className="term-project-group"
+                role="group"
+                aria-labelledby={`projects-${kind}`}
               >
-                <span className="term-menu-ptr" aria-hidden="true">
-                  &gt;
-                </span>
-                <span className="term-project-idx term-menu-sub">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-                <span className="term-project-info">
-                  <span className="term-project-title">
-                    <span className="term-project-name">{project.name}</span>
-                    <span className="term-project-domain term-menu-sub">{project.domain}</span>
-                  </span>
-                  <span className="term-project-desc term-menu-sub">{t.descriptions[index]}</span>
-                </span>
-              </a>
+                <p id={`projects-${kind}`} className="term-project-group-head">
+                  <span className="term-project-group-label">{t.groups[kind].label}</span>
+                  <span className="term-project-group-note"># {t.groups[kind].note}</span>
+                </p>
+                {/* Indices stay global: selection, previews and descriptions all key off them. */}
+                {PROJECTS.map((project, index) =>
+                  project.kind !== kind ? null : (
+                    <a
+                      key={project.url}
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="term-project-row"
+                      data-selected={index === selected || undefined}
+                      onMouseEnter={() => select(index)}
+                      onFocus={() => select(index)}
+                    >
+                      <span className="term-menu-ptr" aria-hidden="true">
+                        &gt;
+                      </span>
+                      <span className="term-project-idx term-menu-sub">
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                      <span className="term-project-info">
+                        <span className="term-project-title">
+                          <span className="term-project-name">{project.name}</span>
+                          <span className="term-project-domain term-menu-sub">
+                            {project.domain}
+                          </span>
+                        </span>
+                        <span className="term-project-desc term-menu-sub">
+                          {t.descriptions[index]}
+                        </span>
+                      </span>
+                    </a>
+                  ),
+                )}
+              </div>
             ))}
           </div>
         </div>
